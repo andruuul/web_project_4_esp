@@ -2,6 +2,14 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__line/header__line.css);
+@import url(../blocks/content/content.css);
+@import url(../blocks/content/profile-grid/profile-grid.css);
+@import url(../blocks/content/profile-grid/__avatar/profile-grid__avatar.css);
+@import url(../blocks/content/profile-grid/__information/profile-grid__information.css);
+@import url(../blocks/content/profile-grid/__username/profile-grid__username.css);
+@import url(../blocks/content/profile-grid/__edit-button/profile-grid__edit-button.css);
+@import url(../blocks/content/profile-grid/__subtitle/profile-grid__subtitle.css);
+@import url(../blocks/content/profile-grid/__add-button/profile-grid__add-button.css);
 
 @font-face {
   font-family: 'Inter';

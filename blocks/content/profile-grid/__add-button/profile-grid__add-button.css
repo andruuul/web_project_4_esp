@@ -1,0 +1,13 @@
+.profile-grid__add-button {
+  width: 155px;
+  height: 55px;
+  margin: 0;
+  padding: auto;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  background-image:url('/images/add-button.png');
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-color: #000000;
+}

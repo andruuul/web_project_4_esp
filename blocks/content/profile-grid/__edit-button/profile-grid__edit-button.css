@@ -1,0 +1,10 @@
+.profile-grid__edit-button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 13px 0 0 18px;
+  background-image:url('/images/edit-button.png');
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-color: #000000;
+}
