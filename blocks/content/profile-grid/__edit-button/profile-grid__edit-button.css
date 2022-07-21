@@ -3,7 +3,7 @@
   height: 30px;
   padding: 0;
   margin: 13px 0 0 18px;
-  background: url(/images/edit-button.png);
+  background: url(/images/edit-button.svg);
   object-fit: cover;
   background-repeat: no-repeat;
 }

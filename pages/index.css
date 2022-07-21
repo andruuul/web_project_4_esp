@@ -10,11 +10,23 @@
 @import url(../blocks/content/profile-grid/__edit-button/profile-grid__edit-button.css);
 @import url(../blocks/content/profile-grid/__subtitle/profile-grid__subtitle.css);
 @import url(../blocks/content/profile-grid/__add-button/profile-grid__add-button.css);
+@import url(../blocks/content/elements-grid/elements-grid.css);
+@import url(../blocks/content/elements-grid/__card/elements-grid__card.css);
+@import url(../blocks/content/elements-grid/__photo/elements-grid__photo.css);
+@import url(../blocks/content/elements-grid/__description/elements-grid__description.css);
+@import url(../blocks/content/elements-grid/__place-name/elements-grid__place-name.css);
+@import url(../blocks/content/elements-grid/__like-button/elements-grid__like-button.css);
 
 @font-face {
   font-family: 'Inter';
   src: url(../fonts/Inter-Regular.woff2) format("woff2"),
   url(../fonts/Inter-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: 'Inter-Black';
+  src: url(../fonts/Inter-Black.woff2) format("woff2");
+  src: url(../fonts/Inter-Black.woff) format("woff");
 }
 
 .page {
@@ -24,4 +36,5 @@
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
+  min-height: 100vh;
 }
