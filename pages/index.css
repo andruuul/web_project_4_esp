@@ -39,4 +39,86 @@
   align-content: center;
   flex-wrap: wrap;
   min-height: 100vh;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 880px) {
+  
+  .header {
+    max-width: 320px;
+  }
+
+  .elements-grid {
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+  }
+
+
+}
+
+@media screen and (max-width: 595px) {
+  
+  .header {
+    max-width: 320px;
+  }
+
+  .header__logo {
+    transform: scale(0.72);
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+    padding: 38px 0 36px;
+    margin: 0;
+  }
+
+  .profile-grid__username {
+    font-size: 22px;
+    line-height: 1.22;
+    text-align: center;
+    padding-top: 26px;
+  }
+
+  .profile-grid__subtitle {
+    font-size: 14px;
+    line-height: 1.21;
+    text-align: center;
+    padding-bottom: 36px;
+  }
+
+  .profile-grid__information {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-grid__edit-button {
+    transform: scale(0.60);
+    margin: 0 0 0 10px;
+    position: relative;
+    top: 26px;
+  }
+
+  .profile-grid__add-button {
+    width: 285px;
+    height: 53px;
+    align-self: center;
+    justify-content: center;
+    background: url(/images/add-button-2.svg);
+    background-repeat: no-repeat;
+    display: flex;
+    justify-self: center;
+  }
+
+  .elements-grid {
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
+
+  .footer__copyright {
+    padding-top: 50px;
+    padding-bottom: 36px;
+  }
 }

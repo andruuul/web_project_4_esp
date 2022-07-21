@@ -6,4 +6,9 @@
   background: url(/images/edit-button.svg);
   object-fit: cover;
   background-repeat: no-repeat;
+  border: 0;
+}
+
+.profile-grid__edit-button:hover {
+  opacity: 0.4;
 }

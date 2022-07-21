@@ -9,4 +9,9 @@
   background: url(/images/add-button.svg);
   object-fit: cover;
   background-repeat: no-repeat;
+  border: 0;
+}
+
+.profile-grid__add-button:hover {
+  opacity: 0.4;
 }
