@@ -13,5 +13,6 @@
 }
 
 .profile-grid__add-button:hover {
-  opacity: 0.4;
+  opacity: .6;
+  cursor: pointer;
 }
