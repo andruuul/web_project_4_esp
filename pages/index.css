@@ -16,6 +16,8 @@
 @import url(../blocks/content/elements-grid/__description/elements-grid__description.css);
 @import url(../blocks/content/elements-grid/__place-name/elements-grid__place-name.css);
 @import url(../blocks/content/elements-grid/__like-button/elements-grid__like-button.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
 
 @font-face {
   font-family: 'Inter';
