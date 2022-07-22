@@ -9,8 +9,8 @@
   outline: none;
   background-image: url("/images/close-button.svg");
   position: relative;
-  left: 50px;
-  bottom: 50px;
+  left: 35px;
+  bottom: 35px;
 }
 
 .popup__close-button:hover {

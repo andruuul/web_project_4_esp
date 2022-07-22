@@ -19,9 +19,9 @@
       <section class="profile-grid">
         <img class="profile-grid__avatar" src="images/profile-photo.jpg" alt="Profile photo">
         <div class="profile-grid__information">
-          <p class="profile-grid__username">Jacques Cousteau</p>
+          <p class="profile-grid__username" id="defaultUsername">Jacques Cousteau</p>
           <button id="editButton" class="profile-grid__edit-button"></button>
-          <p class="profile-grid__subtitle">Explorador</p>
+          <p class="profile-grid__subtitle" id="defaultSubtitle">Explorador</p>
         </div>
         <button class="profile-grid__add-button"></button>
       </section>
@@ -32,10 +32,10 @@
           <p class="popup__title">Edit profile</p>
         </div>
         <form class="popup__input">
-          <input class="popup__username" type="text" id="input-username" placeholder="Nombre">
-          <input class="popup__subtitle" type="text" id="input-subtitle" placeholder="Acerca de mí">  
+          <input class="popup__username" type="text" id="inputUsername" placeholder="Nombre">
+          <input class="popup__subtitle" type="text" id="inputSubtitle" placeholder="Acerca de mí">  
         </form>
-        <button class="popup__save-button">Guardar</button>
+        <button class="popup__save-button" id="saveButton">Guardar</button>
       </div>
       <div class="popup__overlay" id="overlay"></div>
       
@@ -97,6 +97,6 @@
     </footer>
     
   </div>
-  <script src="/script.js"></script>
+  <script src="/scripts/script.js"></script>
 </body>
 </html>
