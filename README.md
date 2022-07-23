@@ -14,4 +14,8 @@ The following languages were used in this project:
 
 **Pages**
 
+<<<<<<< HEAD
 * [Link to the Github Pages project](https://andruuul.github.io/web_project_4_esp/)
+=======
+* [Link to my project](https://andruuul.github.io/web_project_4_esp/)
+>>>>>>> a64052cf28511e34d598c6e7373397dc1a9a7586
