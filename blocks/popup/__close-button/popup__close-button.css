@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0);
   object-fit: contain;
   outline: none;
-  background-image: url("/images/close-button.svg");
+  background-image: url('/images/close-button.svg');
   position: relative;
   left: 35px;
   bottom: 35px;
