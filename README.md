@@ -12,4 +12,4 @@ This project is a simple social media page in which the following languages are 
 
 **GitHub Pages**
 
-* [Link to my project](https://andruuul.github.io/)
+* [Link to my project](https://andruuul.github.io/web_project_4_esp/)
