@@ -2,11 +2,11 @@
 
 ### General description
 
-The following languages were used in this project:
+Simple social media page where the following languages were used:
 
 * HTML
 * CSS: hover, grid, flex.
-* JavaScript: to make interactive buttons: like a post, close a modal, edit username, add pictures.
+* JavaScript: to make interactive buttons: like a post, close and open a modal, edit username, add pictures.
 
 **Figma**
 
@@ -14,8 +14,4 @@ The following languages were used in this project:
 
 **Pages**
 
-<<<<<<< HEAD
-* [Link to the Github Pages project](https://andruuul.github.io/web_project_4_esp/)
-=======
 * [Link to my project](https://andruuul.github.io/web_project_4_esp/)
->>>>>>> a64052cf28511e34d598c6e7373397dc1a9a7586
