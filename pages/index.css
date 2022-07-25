@@ -60,11 +60,45 @@
     max-width: 320px;
   }
 
+  .header__line {
+    transform: scaleX(0.66);
+    position: relative;
+    right: 150px;
+  }
+
+  .header__logo {
+    transform: scale(0.72);
+  }
+
+  .profile-grid {
+    grid-template-columns: 120px 260px 150px;
+  }
+
+  .profile-grid__username {
+    font-size: 22px;
+    line-height: 1.22;
+    text-align: center;
+    padding-top: 26px;
+  }
+
+  .profile-grid__subtitle {
+    font-size: 14px;
+    line-height: 1.21;
+    text-align: center;
+    padding-bottom: 36px;
+  }
+
+  .profile-grid__edit-button {
+    transform: scale(0.60);
+    margin: 0 0 0 10px;
+    position: relative;
+    top: 26px;
+  }
+
   .elements-grid {
     grid-template-columns: 1fr 1fr;
     margin: auto;
   }
-
 
 }
 
@@ -77,6 +111,10 @@
   .header__logo {
     transform: scale(0.72);
   }
+
+  .header__line {
+    margin-left: -130px;
+   }
 
   .profile-grid {
     display: grid;

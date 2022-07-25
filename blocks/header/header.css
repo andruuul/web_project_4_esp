@@ -1,3 +1,7 @@
 .header {
   max-width: 880px;
+  /*Hola Alejandro! No sé cómo comunicarme con usted, así que añado un
+  comentario. En la descripción del proyecto nos indican que no debe pasar de más de 880px
+  el contenido. Incluso hay una foto donde nos muestran la línea y se ve que
+  no ocupa el 100% del espacio, sino que tiene aproximadamente el ancho del grid. ¿Lo puedo dejar así?*/
 }

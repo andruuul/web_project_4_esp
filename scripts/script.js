@@ -35,6 +35,9 @@ saveBtn.addEventListener('click', saveInputChanges)
 function saveInputChanges () {
   defaultUsername.textContent = newUsername.value
   defaultSubtitle.textContent = newSubtitle.value
+  popupContainer.style.display = 'none';
+  overlay.style.display = 'none';
+
 }
 
 //*****Para la próxima, leer sobre: "submit", preventDefault, etc.//
