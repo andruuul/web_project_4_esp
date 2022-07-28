@@ -1,5 +1,5 @@
 .elements-grid__like-button {
-  background-image: url('/images/like-button.svg');
+  background-image: url('../../../../images/like-button.svg');
   background-color: rgba(0, 0, 0, 0);
   width: 22px;
   height: 20px;

@@ -35,7 +35,7 @@ saveBtn.addEventListener('click', saveInputChanges)
 function saveInputChanges () {
   defaultUsername.textContent = newUsername.value
   defaultSubtitle.textContent = newSubtitle.value
-  closePopupContainer()
+  closePopupContainer() //*Muchas gracias por todas tus observaciones!
 }
 
 //*****Para la próxima, leer sobre: "submit", preventDefault, etc.//
@@ -43,11 +43,11 @@ function saveInputChanges () {
 
 //likeBtn (todavía no)
 
-//var likeBtns = document.getElementsByClassName('elements-grid__like-button')
+var likeBtns = document.getElementsByClassName('elements-grid__like-button')
 
-//for (const likeBtn of likeBtns) {
-//  likeBtn.addEventListener('click', activateLikeBtn) 
-//  function activateLikeBtn() {
-//    likeBtn.setAttribute('style', 'background: url("images/like-button-active.svg"); background-repeat: no-repeat;');
-//  };
-//}
+for (const likeBtn of likeBtns) {
+  likeBtn.addEventListener('click', activateLikeBtn) 
+  function activateLikeBtn() {
+    likeBtn.setAttribute('style', 'background: url("../../../../images/like-button-active.svg"); background-repeat: no-repeat;');
+  };
+}
