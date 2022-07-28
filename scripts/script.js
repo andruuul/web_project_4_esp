@@ -48,6 +48,6 @@ var likeBtns = document.getElementsByClassName('elements-grid__like-button')
 for (const likeBtn of likeBtns) {
   likeBtn.addEventListener('click', activateLikeBtn) 
   function activateLikeBtn() {
-    likeBtn.setAttribute('style', 'background: url("/images/like-button-active.svg"); background-repeat: no-repeat;');
+    likeBtn.setAttribute('style', 'background: url("images/like-button-active.svg"); background-repeat: no-repeat;');
   };
 }
