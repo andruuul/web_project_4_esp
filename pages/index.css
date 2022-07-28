@@ -156,7 +156,7 @@
     height: 53px;
     align-self: center;
     justify-content: center;
-    background: url('images/add-button-2.svg');
+    background: url('../images/add-button-2.svg');
     background-repeat: no-repeat;
     display: flex;
     justify-self: center;
