@@ -21,13 +21,13 @@ function closePopupContainer() {
 
 const defaultUsername = document.getElementById('defaultUsername');
 const defaultSubtitle = document.getElementById('defaultSubtitle');
-var newUsername = document.getElementById('inputUsername');
-var newSubtitle = document.getElementById('inputSubtitle');
+let newUsername = document.getElementById('inputUsername');
+let newSubtitle = document.getElementById('inputSubtitle');
 
 newUsername.value = defaultUsername.textContent;
 newSubtitle.value = defaultSubtitle.textContent;
 
-//Guardar los cambios hechos en el value de <input> como el nuevo textContent de <p> con el botón *guardar*
+//Guardar los cambios hechos en el value de <input> como el nuevo textContent de <p> con el botón *guardar* y cerrar el popup
 
 const saveBtn = document.getElementById('saveButton');
 
@@ -56,8 +56,8 @@ const initialCards = [
 //Cargar las Cards iniciales
 
 const elementsGrid = document.querySelector("#elementsGrid");
-
 const cardsTemplate = document.querySelector("#cardTemplate").content;
+
 for (var i=0;i<initialCards.length;i++) {
 const cardsElement = cardsTemplate.querySelector(".elements-grid__card").cloneNode(true);
 cardsElement.querySelector(".elements-grid__photo").src = initialCards[i].link;
@@ -65,19 +65,54 @@ cardsElement.querySelector(".elements-grid__place-name").textContent = initialCa
 elementsGrid.append(cardsElement)
 }
 
-//Desplegar formulario para añadir una tarjeta
+//Abrir y cerrar formulario para añadir una tarjeta
 
+let popupContainerNewPlace = document.getElementById('popupContainerNewPlace');
+let addBtn = document.querySelector('.profile-grid__add-button');
+let newPlaceCloseBtn = document.getElementById('newPlaceCloseButton');
+
+
+addBtn.addEventListener('click', openPopupContainerNewPlace);
+function openPopupContainerNewPlace() {
+  popupContainerNewPlace.style.display = 'flex';
+  overlay.style.display = 'block';
+}
+
+newPlaceCloseBtn.addEventListener('click', closePopupContainerNewPlace);
+function closePopupContainerNewPlace() {
+  popupContainerNewPlace.style.display = 'none';
+  overlay.style.display = 'none';
+}
+
+//Guardar los cambios hechos en el value de <input> como el nuevo textContent de <p> con el botón *guardar* y cerrar el popup
+
+const newPlaceSaveBtn = document.getElementById('newPlaceSaveButton');
+
+newPlaceSaveBtn.addEventListener('click', addNewPlace)
+function addNewPlace () {
+  const cardsElement = cardsTemplate.querySelector('.elements-grid__card').cloneNode(true);
+  let cardURL = document.querySelector("#inputNewPlaceURL");
+  let cardTitle = document.querySelector("#inputNewPlaceTitle");
+  cardsElement.querySelector(".elements-grid__photo").src = cardURL.value;
+  cardsElement.querySelector(".elements-grid__place-name").textContent = cardTitle.value;
+  elementsGrid.append(cardsElement)
+  closePopupContainerNewPlace()
+}
 
 //*****Para la próxima, leer sobre: "submit", preventDefault, etc.//
 
-//likeBtn 
+//Activar y desactivar el boton "like" al hacer click  
 
-// var likeBtns = document.getElementsByClassName('elements-grid__like-button')
+let likeBtn = document.querySelectorAll('.elements-grid__like-button');
+for (let i = 0; i < likeBtn.length; i++) {
+  likeBtn[i].addEventListener("click", function() {
+    likeBtn[i].classList.toggle("elements-grid__like-button_active");
+  });
+}
 
-//for (const likeBtn of likeBtns) {
-//  likeBtn.addEventListener('click', activateLikeBtn) 
-//  function activateLikeBtn() {
-// likeBtn.setAttribute('style', 'background: url("./images/like-button-active.svg"); background-repeat: no-repeat;');
-//  };
-//}
+
+
+
+
+
 
