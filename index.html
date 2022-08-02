@@ -41,56 +41,10 @@
       <div class="popup__overlay" id="overlay"></div>
       
 
-      <section class="elements-grid">
-        <div class="elements-grid__card">
-          <img class="elements-grid__photo" src="images/raleigh.jpg" alt="Raleigh">
-          <div class ="elements-grid__description">
-            <p class="elements-grid__place-name">Raleigh</p>
-            <button class="elements-grid__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements-grid__card">
-          <img class="elements-grid__photo" src="images/new-york.jpg" alt="New York">
-          <div class ="elements-grid__description">
-            <p class="elements-grid__place-name">New York</p>
-            <button class="elements-grid__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements-grid__card">
-          <img class="elements-grid__photo" src="images/phoenix.jpg" alt="Phoenix">
-          <div class ="elements-grid__description">
-            <p class="elements-grid__place-name">Phoenix</p>
-            <button class="elements-grid__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements-grid__card">
-          <img class="elements-grid__photo" src="images/richmond.jpg" alt="Richmong">
-          <div class ="elements-grid__description">
-            <p class="elements-grid__place-name">Richmond</p>
-            <button class="elements-grid__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements-grid__card">
-          <img class="elements-grid__photo" src="images/tampa.jpg" alt="Tampa">
-          <div class ="elements-grid__description">
-            <p class="elements-grid__place-name">Tampa</p>
-            <button class="elements-grid__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements-grid__card">
-          <img class="elements-grid__photo" src="images/ventura.jpg" alt="Ventura">
-          <div class ="elements-grid__description">
-            <p class="elements-grid__place-name">Ventura</p>
-            <button class="elements-grid__like-button"></button>
-          </div>
-        </div>
-        
+      <section class="elements-grid" id="elementsGrid"> 
+      
       </section>
+      
     </main>
 
     <footer class="footer">
@@ -98,6 +52,17 @@
     </footer>
     
   </div>
+
+  <template id="cardTemplate">
+    <div class="elements-grid__card">
+      <img class="elements-grid__photo" alt="Raleigh">
+      <div class ="elements-grid__description">
+        <p class="elements-grid__place-name"></p>
+        <button class="elements-grid__like-button"></button>
+      </div>
+    </div>
+  </template>
+
   <script src="scripts/script.js"></script>
 </body>
 </html>
