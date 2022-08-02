@@ -101,7 +101,7 @@ function addNewPlace () {
 
 //*****Para la próxima, leer sobre: "submit", preventDefault, etc.//
 
-//Activar y desactivar el boton "like" al hacer click  
+//Activar y desactivar el boton "like" al hacer click  *** NO SIRVE PARA LOS BOTONES AGREGADOS CON LA FUNCIÓN ANTERIOR?!?
 
 let likeBtn = document.querySelectorAll('.elements-grid__like-button');
 for (let i = 0; i < likeBtn.length; i++) {
