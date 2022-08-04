@@ -1,0 +1,11 @@
+.popup-image__container {
+  max-width: 75vh;
+  max-height: 75vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: blue;
+  z-index: 1000;
+  display: none;
+}
