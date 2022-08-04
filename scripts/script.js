@@ -187,10 +187,8 @@ function closeImagePopup() {
 }
 
 
-
-
-
-
+//varias funciones dejan de servir cuando se agregan elementos. No sé qué hacer,
+//ayuda por favor!! :((( // 
 
 
 
