@@ -7,20 +7,18 @@ let closeBtn = document.getElementById('popupCloseButton');
 
 editBtn.addEventListener('click', openPopupContainer);
 function openPopupContainer() {
-  popupContainer.style.opacity = '1';
-  popupContainer.style.height = '330px';
-  popupContainer.style.width = '430px';
-  popupContainer.style.transition = 'opacity .5s, height 0s, width 0s';
+  popupContainer.style.visibility = 'visible';
+  popupContainer.style.opacity = '1'
+  popupContainer.style.transition = 'visibility 0s, opacity .5s';
   popupContainer.style.overflow = 'visible'
   overlay.style.display = 'block';
 }
 
 closeBtn.addEventListener('click', closePopupContainer);
 function closePopupContainer() {
-  popupContainer.style.opacity = '0';
-  popupContainer.style.height = '0';
-  popupContainer.style.width = '0';
-  popupContainer.style.transition = 'opacity 0s, height 0s, width 0s';
+  popupContainer.style.visibility = 'hidden';
+  popupContainer.style.opacity = '0'
+  popupContainer.style.transition = 'visibility 0s, opacity 0s';
   popupContainer.style.overflow = 'hidden'
   overlay.style.display = 'none';
 }
@@ -82,21 +80,19 @@ let newPlaceCloseBtn = document.getElementById('newPlaceCloseButton');
 
 addBtn.addEventListener('click', openPopupContainerNewPlace);
 function openPopupContainerNewPlace() {
-    popupContainerNewPlace.style.opacity = '1';
-    popupContainerNewPlace.style.height = '330px';
-    popupContainerNewPlace.style.width = '430px';
-    popupContainerNewPlace.style.transition = 'opacity .5s, height 0s, width 0s';
-    popupContainerNewPlace.style.overflow = 'visible'
-    overlay.style.display = 'block';
-  }
+  popupContainerNewPlace.style.visibility = 'visible';
+  popupContainerNewPlace.style.opacity = '1'
+  popupContainerNewPlace.style.transition = 'visibility 0s, opacity .5s';
+  popupContainerNewPlace.style.overflow = 'visible'
+  overlay.style.display = 'block';
+}
   
 newPlaceCloseBtn.addEventListener('click', closePopupContainerNewPlace);
 function closePopupContainerNewPlace() {
-    popupContainerNewPlace.style.opacity = '0';
-    popupContainerNewPlace.style.height = '0';
-    popupContainerNewPlace.style.width = '0';
-    popupContainerNewPlace.style.transition = 'opacity 0s, height 0s, width 0s';
-    popupContainerNewPlace.style.overflow = 'hidden'
+  popupContainerNewPlace.style.visibility = 'hidden';
+  popupContainerNewPlace.style.opacity = '1'
+  popupContainerNewPlace.style.transition = 'visibility 0s, opacity .5s';
+  popupContainerNewPlace.style.overflow = 'hidden'
     overlay.style.display = 'none';
   }
 
