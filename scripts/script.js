@@ -101,7 +101,8 @@ function addNewPlace () {
 
 //*****Para la próxima, leer sobre: "submit", preventDefault, etc.//
 
-//Activar y desactivar el boton "like" al hacer click  *** NO SIRVE PARA LOS BOTONES DE LAS TARJETAS NUEVAS (LAS CREADAS CON EL BOTÓN ADD) ????????????
+//Activar y desactivar el boton "like" al hacer click  
+//*** NO SIRVE PARA LOS BOTONES DE LAS TARJETAS NUEVAS (LAS CREADAS CON EL BOTÓN ADD) ????????????
 const likeBtn = document.getElementsByClassName('elements-grid__like-button');
 for (let i = 0; i < likeBtn.length; i++) {
   likeBtn[i].addEventListener("click", function() {
@@ -110,7 +111,9 @@ for (let i = 0; i < likeBtn.length; i++) {
 }
 
 
-//Eliminar (ocultar) un card con el botón delete *** NO SIRVE PARA LOS BOTONES DE LAS TARJETAS NUEVAS (LAS CREADAS CON EL BOTÓN ADD) ?????????????
+//Eliminar (ocultar) un card con el botón delete 
+//*** NO SIRVE PARA LOS BOTONES DE LAS TARJETAS NUEVAS (LAS CREADAS CON EL BOTÓN ADD) ?????????????
+
 let deleteBtn = elementsGrid.getElementsByClassName('elements-grid__delete-button');
 
 window.onload=function(){
@@ -125,33 +128,39 @@ window.onload=function(){
 }//onload
 
 
-//Mostrar la imagen en un popup (cambiar el src del img en el div de image-popup)
+//Mostrar la imagen en un popup 
+//(cambiar el src del img en el div de image-popup y el texto)
 
 let cardImage = elementsGrid.getElementsByClassName('elements-grid__photo');
 let imagePopupContainer = document.getElementById('popupImageContainer');
+let cardText = elementsGrid.getElementsByClassName('elements-grid__place-name');
 
 for (let i = 0; i < cardImage.length; i++) {
 cardImage[i].addEventListener("click", () => {
   imagePopupContainer.style.display= 'flex';
   overlay.style.display = 'block';
-})
+
+  let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
+
+  let cardSource = cardImage[i].src;
+  popupImageImage.src = cardSource;
+
+  let popupImageText = imagePopupContainer.querySelector('#popupImageText');
+  popupImageText.textContent = cardText[i].textContent;
+}
+)
 }
 
-//Ocultar el popup de la imagen - ni se selecciona el button??????????
+//Ocultar el popup de la imagen al hacer click en el ícono de basura
 let imagePopupDeleteButton = imagePopupContainer.querySelector('#popupImageCloseButton');
 imagePopupDeleteButton.addEventListener('click', closeImagePopup)
 function closeImagePopup() {
-  console.log('hola')
   imagePopupContainer.style.display = 'none';
   overlay.style.display = 'none';
+  console.log(cardsTemplate)
+
 }
 
-
-//(cambiar el src del img en el div de image-popup)
-
-      //codigo
-
-//let popupImageImage = document.getElementsByClassName('popup-image__image');
 
 
 
