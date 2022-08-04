@@ -7,13 +7,21 @@ let closeBtn = document.getElementById('popupCloseButton');
 
 editBtn.addEventListener('click', openPopupContainer);
 function openPopupContainer() {
-  popupContainer.style.display = 'flex';
+  popupContainer.style.opacity = '1';
+  popupContainer.style.height = '330px';
+  popupContainer.style.width = '430px';
+  popupContainer.style.transition = 'opacity .5s, height 0s, width 0s';
+  popupContainer.style.overflow = 'visible'
   overlay.style.display = 'block';
 }
 
 closeBtn.addEventListener('click', closePopupContainer);
 function closePopupContainer() {
-  popupContainer.style.display = 'none';
+  popupContainer.style.opacity = '0';
+  popupContainer.style.height = '0';
+  popupContainer.style.width = '0';
+  popupContainer.style.transition = 'opacity 0s, height 0s, width 0s';
+  popupContainer.style.overflow = 'hidden'
   overlay.style.display = 'none';
 }
 
@@ -74,15 +82,24 @@ let newPlaceCloseBtn = document.getElementById('newPlaceCloseButton');
 
 addBtn.addEventListener('click', openPopupContainerNewPlace);
 function openPopupContainerNewPlace() {
-  popupContainerNewPlace.style.display = 'flex';
-  overlay.style.display = 'block';
-}
-
+    popupContainerNewPlace.style.opacity = '1';
+    popupContainerNewPlace.style.height = '330px';
+    popupContainerNewPlace.style.width = '430px';
+    popupContainerNewPlace.style.transition = 'opacity .5s, height 0s, width 0s';
+    popupContainerNewPlace.style.overflow = 'visible'
+    overlay.style.display = 'block';
+  }
+  
 newPlaceCloseBtn.addEventListener('click', closePopupContainerNewPlace);
 function closePopupContainerNewPlace() {
-  popupContainerNewPlace.style.display = 'none';
-  overlay.style.display = 'none';
-}
+    popupContainerNewPlace.style.opacity = '0';
+    popupContainerNewPlace.style.height = '0';
+    popupContainerNewPlace.style.width = '0';
+    popupContainerNewPlace.style.transition = 'opacity 0s, height 0s, width 0s';
+    popupContainerNewPlace.style.overflow = 'hidden'
+    overlay.style.display = 'none';
+  }
+
 
 //Guardar los cambios hechos en el value de <input> como el nuevo textContent de <p> con el botón *guardar* y cerrar el popup
 
@@ -147,15 +164,27 @@ cardImage[i].addEventListener("click", () => {
 
   let popupImageText = imagePopupContainer.querySelector('#popupImageText');
   popupImageText.textContent = cardText[i].textContent;
+
+  imagePopupContainer.style.opacity = '1';
+  imagePopupContainer.style.height = 'auto';
+  imagePopupContainer.style.width = 'auto';
+  imagePopupContainer.style.transition = 'opacity .7s, height 0s, width 0s';
+  imagePopupContainer.style.overflow = 'visible';
+  overlay.style.display = 'block';
 }
+
 )
 }
 
-//Ocultar el popup de la imagen al hacer click en el ícono de basura
-let imagePopupDeleteButton = imagePopupContainer.querySelector('#popupImageCloseButton');
-imagePopupDeleteButton.addEventListener('click', closeImagePopup)
+//Ocultar el popup de la imagen al hacer click en el botón de cerrar
+let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
+imagePopupCloseButton.addEventListener('click', closeImagePopup)
 function closeImagePopup() {
-  imagePopupContainer.style.display = 'none';
+  imagePopupContainer.style.opacity = '0';
+  imagePopupContainer.style.height = '0';
+  imagePopupContainer.style.width = '0';
+  imagePopupContainer.style.transition = 'opacity 0s, height 0s, width 0s';
+  imagePopupContainer.style.overflow = 'hidden'
   overlay.style.display = 'none';
   console.log(cardsTemplate)
 
