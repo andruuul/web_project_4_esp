@@ -62,7 +62,7 @@ for (var i=0;i<initialCards.length;i++) {
 const cardsElement = cardsTemplate.querySelector(".elements-grid__card").cloneNode(true);
 cardsElement.querySelector(".elements-grid__photo").src = initialCards[i].link;
 cardsElement.querySelector(".elements-grid__place-name").textContent = initialCards[i].name;
-elementsGrid.append(cardsElement)
+elementsGrid.prepend(cardsElement)
 }
 
 //Abrir y cerrar formulario para añadir una tarjeta
@@ -96,7 +96,7 @@ function addNewPlace () {
   let cardTitle = document.querySelector("#inputNewPlaceTitle");
   cardsElement.querySelector(".elements-grid__photo").src = cardURL.value;
   cardsElement.querySelector(".elements-grid__place-name").textContent = cardTitle.value;
-  elementsGrid.append(cardsElement)
+  elementsGrid.prepend(cardsElement)
   closePopupContainerNewPlace()
 }
 
@@ -168,7 +168,7 @@ function closeImagePopup() {
 
 
 //varias funciones dejan de servir cuando se agregan elementos. No sé qué hacer,
-//ayuda por favor!! :((( // 
+//ayuda por favor!! :((( // ¿O hay que esperar al siguiente sprint?
 
 
 
