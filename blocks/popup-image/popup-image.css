@@ -8,8 +8,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999999;
-  visibility: none;
+  opacity: 1;
+  height: auto;
+  width: auto;
+  transition: opacity .7s, height 0s, width 0s;
+  overflow: visible;
+}
+
+.popup-image_hidden {
   opacity: 0;
+  height: 0;
+  width: 0;
+  transition: opacity 0s, height 0s, width 0s;
   overflow: hidden;
 }
   

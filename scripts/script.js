@@ -7,19 +7,13 @@ let closeBtn = document.getElementById('popupCloseButton');
 
 editBtn.addEventListener('click', openPopupContainer);
 function openPopupContainer() {
-  popupContainer.style.visibility = 'visible';
-  popupContainer.style.opacity = '1'
-  popupContainer.style.transition = 'visibility 0s, opacity .5s';
-  popupContainer.style.overflow = 'visible'
+  popupContainer.classList.toggle("popup_hidden")
   overlay.style.display = 'block';
 }
 
 closeBtn.addEventListener('click', closePopupContainer);
 function closePopupContainer() {
-  popupContainer.style.visibility = 'hidden';
-  popupContainer.style.opacity = '0'
-  popupContainer.style.transition = 'visibility 0s, opacity 0s';
-  popupContainer.style.overflow = 'hidden'
+  popupContainer.classList.toggle("popup_hidden")
   overlay.style.display = 'none';
 }
 
@@ -80,20 +74,14 @@ let newPlaceCloseBtn = document.getElementById('newPlaceCloseButton');
 
 addBtn.addEventListener('click', openPopupContainerNewPlace);
 function openPopupContainerNewPlace() {
-  popupContainerNewPlace.style.visibility = 'visible';
-  popupContainerNewPlace.style.opacity = '1'
-  popupContainerNewPlace.style.transition = 'visibility 0s, opacity .5s';
-  popupContainerNewPlace.style.overflow = 'visible'
+  popupContainerNewPlace.classList.toggle("popup_hidden");
   overlay.style.display = 'block';
 }
   
 newPlaceCloseBtn.addEventListener('click', closePopupContainerNewPlace);
 function closePopupContainerNewPlace() {
-  popupContainerNewPlace.style.visibility = 'hidden';
-  popupContainerNewPlace.style.opacity = '1'
-  popupContainerNewPlace.style.transition = 'visibility 0s, opacity .5s';
-  popupContainerNewPlace.style.overflow = 'hidden'
-    overlay.style.display = 'none';
+  popupContainerNewPlace.classList.toggle("popup_hidden");
+  overlay.style.display = 'none';
   }
 
 
@@ -161,11 +149,7 @@ cardImage[i].addEventListener("click", () => {
   let popupImageText = imagePopupContainer.querySelector('#popupImageText');
   popupImageText.textContent = cardText[i].textContent;
 
-  imagePopupContainer.style.opacity = '1';
-  imagePopupContainer.style.height = 'auto';
-  imagePopupContainer.style.width = 'auto';
-  imagePopupContainer.style.transition = 'opacity .7s, height 0s, width 0s';
-  imagePopupContainer.style.overflow = 'visible';
+  imagePopupContainer.classList.toggle("popup-image_hidden")
   overlay.style.display = 'block';
 }
 
@@ -176,11 +160,7 @@ cardImage[i].addEventListener("click", () => {
 let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
 imagePopupCloseButton.addEventListener('click', closeImagePopup)
 function closeImagePopup() {
-  imagePopupContainer.style.opacity = '0';
-  imagePopupContainer.style.height = '0';
-  imagePopupContainer.style.width = '0';
-  imagePopupContainer.style.transition = 'opacity 0s, height 0s, width 0s';
-  imagePopupContainer.style.overflow = 'hidden'
+  imagePopupContainer.classList.toggle("popup-image_hidden")
   overlay.style.display = 'none';
   console.log(cardsTemplate)
 
