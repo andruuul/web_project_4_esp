@@ -16,9 +16,10 @@
 @import url(../blocks/content/elements-grid/__description/elements-grid__description.css);
 @import url(../blocks/content/elements-grid/__place-name/elements-grid__place-name.css);
 @import url(../blocks/content/elements-grid/__like-button/elements-grid__like-button.css);
+@import url(../blocks/content/elements-grid/__delete-button/elements-grid__delete-button.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__title-and-button/popup__title-and-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__title/popup__title.css);
@@ -26,7 +27,11 @@
 @import url(../blocks/popup/__username/popup__username.css);
 @import url(../blocks/popup/__subtitle/popup__subtitle.css);
 @import url(../blocks/popup/__save-button/popup__save-button.css);
-@import url(../blocks/popup/__overlay/popup__overlay.css);
+@import url(../blocks/overlay/overlay.css);
+@import url(../blocks/popup-image/popup-image.css);
+@import url(../blocks/popup-image/__image/popup-image__image.css);
+@import url(../blocks/popup-image/__close-button/popup-image__close-button.css);
+@import url(../blocks/popup-image/__text/popup-image__text.css);
 
 
 
@@ -189,7 +194,6 @@
     bottom: 55px;
     transform: scale(.65);
   }
-
   .popup__username {
     width: 238px;
   }
@@ -203,4 +207,21 @@
     height: 46px;
     font-size: 14px;
   }
+
+  .popup-image__container {
+    max-width: 240px;
+    max-height: 75vh;
+  }
+
+  .popup-image__image {
+    max-width: 240px;
+    max-height: 75vh;
+  }
+
+  .popup-image__close-button {
+    left: 30px;
+    top: 3px;
+    transform: scale(.65);
+  }
 }
+
