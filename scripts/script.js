@@ -65,6 +65,7 @@ cardsElement.querySelector(".elements-grid__place-name").textContent = initialCa
 elementsGrid.prepend(cardsElement)
 cardsElement.querySelector(".elements-grid__like-button").addEventListener("click", likeCard);
 cardsElement.querySelector(".elements-grid__delete-button").addEventListener("click", removeCard);
+cardsElement.querySelector(".elements-grid__photo").addEventListener("click",openImagePopup);
 }
 
 //Abrir y cerrar formulario para añadir una tarjeta
@@ -102,6 +103,7 @@ function addNewPlace () {
   closePopupContainerNewPlace()
   cardsElement.querySelector(".elements-grid__like-button").addEventListener("click", likeCard);
   cardsElement.querySelector(".elements-grid__delete-button").addEventListener("click", removeCard);
+  cardsElement.querySelector(".elements-grid__photo").addEventListener("click",openImagePopup);
 }
 //Eliminar un card con el botón delete 
 function removeCard (evt) {evt.target.parentElement.remove()}
@@ -111,30 +113,28 @@ function likeCard (evt) {evt.target.classList.toggle("elements-grid__like-button
 
 //Mostrar la imagen en un popup 
 //(cambiar el src del img en el div de image-popup y el texto)
-
-let cardImage = elementsGrid.getElementsByClassName('elements-grid__photo');
 let imagePopupContainer = document.getElementById('popupImageContainer');
+
+
+function openImagePopup (evt) {console.log("holiiiii")
+
 let cardText = elementsGrid.getElementsByClassName('elements-grid__place-name');
 
-for (let i = 0; i < cardImage.length; i++) {
-cardImage[i].addEventListener("click", () => {
   imagePopupContainer.style.display= 'flex';
   overlay.style.display = 'block';
 
   let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
 
-  let cardSource = cardImage[i].src;
+  let cardSource = evt.target.src;
   popupImageImage.src = cardSource;
 
   let popupImageText = imagePopupContainer.querySelector('#popupImageText');
-  popupImageText.textContent = cardText[i].textContent;
+  popupImageText.textContent = cardText.textContent;
 
   imagePopupContainer.classList.toggle("popup-image_hidden")
   overlay.style.display = 'block';
 }
 
-)
-}
 
 //Ocultar el popup de la imagen al hacer click en el botón de cerrar
 let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
