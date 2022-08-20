@@ -44,7 +44,9 @@ const initialCards = [
   {  name: "Valle de Yosemite",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg"  },
   {  name: "Lago Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"  },{  name:"Montañas Calvas", link:"https://code.s3.yandex.net/web-code/bald-mountains.jpg"},
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"  },
+  {  name:"Montañas Calvas",
+    link:"https://code.s3.yandex.net/web-code/bald-mountains.jpg"  },
   {  name: "Latemar",
     link: "https://code.s3.yandex.net/web-code/latemar.jpg"  },
   {  name: "Parque Nacional de la Vanoise",
@@ -114,7 +116,6 @@ function likeCard (evt) {evt.target.classList.toggle("elements-grid__like-button
 //Mostrar la imagen en un popup 
 //(cambiar el src del img en el div de image-popup y el texto)
 let imagePopupContainer = document.getElementById('popupImageContainer');
-
 
 function openImagePopup (evt) {
   let cardText = elementsGrid.getElementsByClassName('elements-grid__place-name');
