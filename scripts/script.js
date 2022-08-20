@@ -63,6 +63,8 @@ const cardsElement = cardsTemplate.querySelector(".elements-grid__card").cloneNo
 cardsElement.querySelector(".elements-grid__photo").src = initialCards[i].link;
 cardsElement.querySelector(".elements-grid__place-name").textContent = initialCards[i].name;
 elementsGrid.prepend(cardsElement)
+cardsElement.querySelector(".elements-grid__like-button").addEventListener("click", likeCard);
+cardsElement.querySelector(".elements-grid__delete-button").addEventListener("click", removeCard);
 }
 
 //Abrir y cerrar formulario para añadir una tarjeta
@@ -98,36 +100,14 @@ function addNewPlace () {
   cardsElement.querySelector(".elements-grid__place-name").textContent = cardTitle.value;
   elementsGrid.prepend(cardsElement)
   closePopupContainerNewPlace()
+  cardsElement.querySelector(".elements-grid__like-button").addEventListener("click", likeCard);
+  cardsElement.querySelector(".elements-grid__delete-button").addEventListener("click", removeCard);
 }
+//Eliminar un card con el botón delete 
+function removeCard (evt) {evt.target.parentElement.remove()}
 
-//*****Para la próxima, leer sobre: "submit", preventDefault, etc.//
-
-//Activar y desactivar el boton "like" al hacer click  
-//*** NO SIRVE PARA LOS BOTONES DE LAS TARJETAS NUEVAS (LAS CREADAS CON EL BOTÓN ADD) ????????????
-const likeBtn = document.getElementsByClassName('elements-grid__like-button');
-for (let i = 0; i < likeBtn.length; i++) {
-  likeBtn[i].addEventListener("click", function() {
-    likeBtn[i].classList.toggle("elements-grid__like-button_active");
-  });
-}
-
-
-//Eliminar (ocultar) un card con el botón delete 
-//*** NO SIRVE PARA LOS BOTONES DE LAS TARJETAS NUEVAS (LAS CREADAS CON EL BOTÓN ADD) ?????????????
-
-let deleteBtn = elementsGrid.getElementsByClassName('elements-grid__delete-button');
-
-window.onload=function(){
-  
-  for (let i = 0; i < deleteBtn.length; i++) {
-    deleteBtn[i].addEventListener("click", deleteCard)
-    function deleteCard() {deleteBtn[i].parentElement.style.display = "none";
-    };
-  }
-
-
-}//onload
-
+//Activar y desactivar el boton "like" al hacer click en tarjetas nuevas
+function likeCard (evt) {evt.target.classList.toggle("elements-grid__like-button_active")}
 
 //Mostrar la imagen en un popup 
 //(cambiar el src del img en el div de image-popup y el texto)
