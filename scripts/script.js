@@ -116,9 +116,8 @@ function likeCard (evt) {evt.target.classList.toggle("elements-grid__like-button
 let imagePopupContainer = document.getElementById('popupImageContainer');
 
 
-function openImagePopup (evt) {console.log("holiiiii")
-
-let cardText = elementsGrid.getElementsByClassName('elements-grid__place-name');
+function openImagePopup (evt) {
+  let cardText = elementsGrid.getElementsByClassName('elements-grid__place-name');
 
   imagePopupContainer.style.display= 'flex';
   overlay.style.display = 'block';
@@ -146,9 +145,6 @@ function closeImagePopup() {
 
 }
 
-
-//varias funciones dejan de servir cuando se agregan elementos. No sé qué hacer,
-//ayuda por favor!! :((( // ¿O hay que esperar al siguiente sprint?
 
 
 
