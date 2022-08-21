@@ -67,3 +67,12 @@ function enableValidation () {
 
 enableValidation();
 
+//No entendí qué es esto, pero creo que solo tenía que ponerlo aquí (??????????????????)
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
+}); 

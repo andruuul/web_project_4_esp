@@ -1,21 +1,26 @@
 //Abrir y cerrar el modal con el botón *editar* y *cerrar*, correspondientemente
 
 let popupContainer = document.getElementById('popupContainer');
-let overlay = document.getElementById('overlay');
+let overlayForms = document.getElementById('overlay-forms');
 let editBtn = document.getElementById('editButton');
 let closeBtn = document.getElementById('popupCloseButton');
 
 editBtn.addEventListener('click', openPopupContainer);
 function openPopupContainer() {
-  popupContainer.classList.toggle("popup_hidden")
-  overlay.style.display = 'block';
+  popupContainer.classList.remove("popup_hidden")
+  overlayForms.style.display = 'block';
 }
 
 closeBtn.addEventListener('click', closePopupContainer);
 function closePopupContainer() {
-  popupContainer.classList.toggle("popup_hidden")
-  overlay.style.display = 'none';
+  popupContainer.classList.add("popup_hidden")
+  overlayForms.style.display = 'none';
 }
+
+//Cerrar el modal al hacer click fuera
+
+overlayForms.addEventListener('click', closePopupContainer)
+
 
 //Precargar el textContent de los <p> como el value de <input>
 
@@ -76,19 +81,21 @@ let popupContainerNewPlace = document.getElementById('popupContainerNewPlace');
 let addBtn = document.querySelector('.profile-grid__add-button');
 let newPlaceCloseBtn = document.getElementById('newPlaceCloseButton');
 
-
 addBtn.addEventListener('click', openPopupContainerNewPlace);
 function openPopupContainerNewPlace() {
-  popupContainerNewPlace.classList.toggle("popup_hidden");
-  overlay.style.display = 'block';
+  popupContainerNewPlace.classList.remove("popup_hidden");
+  overlayForms.style.display = 'block';
 }
   
 newPlaceCloseBtn.addEventListener('click', closePopupContainerNewPlace);
 function closePopupContainerNewPlace() {
-  popupContainerNewPlace.classList.toggle("popup_hidden");
-  overlay.style.display = 'none';
+  popupContainerNewPlace.classList.add("popup_hidden");
+  overlayForms.style.display = 'none';
   }
 
+//Cerrar el modal al hacer click fuera
+
+overlayForms.addEventListener('click', closePopupContainerNewPlace)
 
 //Guardar los cambios hechos en el value de <input> como el nuevo textContent de <p> con el botón *guardar* y cerrar el popup
 
@@ -116,23 +123,23 @@ function likeCard (evt) {evt.target.classList.toggle("elements-grid__like-button
 //Mostrar la imagen en un popup 
 //(cambiar el src del img en el div de image-popup y el texto)
 let imagePopupContainer = document.getElementById('popupImageContainer');
+let overlayPictures = document.getElementById('overlay-pictures');
 
 function openImagePopup (evt) {
-  let cardText = elementsGrid.getElementsByClassName('elements-grid__place-name');
+  let cardText = elementsGrid.querySelector('.elements-grid__place-name');
 
   imagePopupContainer.style.display= 'flex';
-  overlay.style.display = 'block';
+  overlayPictures.style.display = 'block';
 
   let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
 
-  let cardSource = evt.target.src;
-  popupImageImage.src = cardSource;
+  popupImageImage.src = evt.target.src;
 
   let popupImageText = imagePopupContainer.querySelector('#popupImageText');
   popupImageText.textContent = cardText.textContent;
 
   imagePopupContainer.classList.toggle("popup-image_hidden")
-  overlay.style.display = 'block';
+  overlayPictures.style.display = 'block';
 }
 
 
@@ -141,8 +148,19 @@ let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseB
 imagePopupCloseButton.addEventListener('click', closeImagePopup)
 function closeImagePopup() {
   imagePopupContainer.classList.toggle("popup-image_hidden")
-  overlay.style.display = 'none';
+  overlayPictures.style.display = 'none';
 }
+//Ocultar el popup de la imagen al hacer click fuera
+overlayPictures.addEventListener('click', closeImagePopup)
+
+//Ocultar cualquier popul al hacer click en 'esc'
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeImagePopup();
+    closePopupContainer();
+    closePopupContainerNewPlace();
+  }
+})
 
 
 
