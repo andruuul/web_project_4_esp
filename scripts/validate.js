@@ -20,24 +20,37 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
+const hasInvalidInput = (inputList) => {
+  console.log("hasInvalidInput()FUNCIONANDO")
+  return inputList.some((inputElement) => {
+  return !inputElement.validity.valid;
+}); }
+
+const toggleButtonState = (inputList, buttonElement) => {
+  console.log(hasInvalidInput(inputList));
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add("popup__save-button_inactive");
+  } else {
+    buttonElement.classList.remove("popup__save-button_inactive");
+  }
+};
+
+
 const setEventListeners = (formElement) => {
     console.log("seteventLISTENERS()FUNCIONANDO")
     const inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
-    const buttonElement = document.querySelector(".popup__save-button")
-    buttonElement.addEventListener("click", function() {console.log("yayyy")}) //Esto funciona, ahora hacer la TOGGLEBUTTON
+    
+    const buttonElement = formElement.querySelector(".popup__save-button")
+    // aquí, para comprobar el estado del botón al principio
+    toggleButtonState(inputList, buttonElement);
 
     inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement);
+      // y aquí, para comprobarlo cada vez que haya cambios en la entrada de algún campo
+      toggleButtonState(inputList, buttonElement);
     });
-    
-    const hasInvalidInput = (inputList) => {
-        console.log("hasInvalidInput()FUNCIONANDO")
-        return inputList.some((inputElement) => {
-        return !inputElement.validity.valid;
-      }); }
-
-      console.log(hasInvalidInput(inputList)) // ESTE HAY QUE CAMBIAR Y USAR EN OTRA FUNCION      
+  
   }); 
  
 }
@@ -53,3 +66,4 @@ function enableValidation () {
 //toggleButtonState(inputList, buttonElement)
 
 enableValidation();
+
