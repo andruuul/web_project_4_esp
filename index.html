@@ -32,11 +32,13 @@
           <button id="popupCloseButton" class="popup__close-button"></button>
           <p class="popup__title">Edit profile</p>
         </div>
-        <form class="popup__input">
-          <input class="popup__username" type="text" id="inputUsername" placeholder="Nombre">
-          <input class="popup__subtitle" type="text" id="inputSubtitle" placeholder="Acerca de mí">  
+        <form class="popup__form">
+          <input class="popup__input" type="text" id="inputUsername" placeholder="Nombre" required minlength="2" maxlength="40">
+          <span class="popup__input-error inputUsername-input-error"></span>
+          <input class="popup__input" type="text" id="inputSubtitle" placeholder="Acerca de mí" required minlength="2" maxlength="200">  
+          <span class="popup__input-error popup__input-error-lower inputSubtitle-input-error"></span>
         </form>
-        <button class="popup__save-button" id="saveButton">Guardar</button>
+        <button class="popup__save-button" id="saveButton" type="submit">Guardar</button>
       </div>
       <div class="overlay" id="overlay"></div>
       
@@ -45,11 +47,13 @@
           <button id="newPlaceCloseButton" class="popup__close-button"></button>
           <p class="popup__title">New Place</p>
         </div>
-        <form class="popup__input">
-          <input class="popup__username" type="text" id="inputNewPlaceTitle" placeholder="Título">
-          <input class="popup__subtitle" type="text" id="inputNewPlaceURL" placeholder="URL de la imagen">  
+        <form class="popup__form">
+          <input class="popup__input" type="text" id="inputNewPlaceTitle" placeholder="Título">
+          <span class="popup__input-error inputNewPlaceTitle-input-error"></span>
+          <input class="popup__input" type="text" id="inputNewPlaceURL" placeholder="URL de la imagen">
+          <span class="popup__input-error popup__input-error-lower inputNewPlaceURL-input-error"></span>
         </form>
-        <button class="popup__save-button" id="newPlaceSaveButton">Crear</button>
+        <button class="popup__save-button" id="newPlaceSaveButton" type="submit">Crear</button>
       </div>
 
 
@@ -84,5 +88,6 @@
   </template>
 
   <script src="scripts/script.js"></script>
+  <script src="scripts/validate.js"></script>
 </body>
 </html>

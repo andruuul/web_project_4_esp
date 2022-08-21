@@ -105,7 +105,7 @@ function addNewPlace () {
   closePopupContainerNewPlace()
   cardsElement.querySelector(".elements-grid__like-button").addEventListener("click", likeCard);
   cardsElement.querySelector(".elements-grid__delete-button").addEventListener("click", removeCard);
-  cardsElement.querySelector(".elements-grid__photo").addEventListener("click",openImagePopup);
+  cardsElement.querySelector(".elements-grid__photo").addEventListener("click", openImagePopup);
 }
 //Eliminar un card con el botón delete 
 function removeCard (evt) {evt.target.parentElement.remove()}
@@ -142,12 +142,7 @@ imagePopupCloseButton.addEventListener('click', closeImagePopup)
 function closeImagePopup() {
   imagePopupContainer.classList.toggle("popup-image_hidden")
   overlay.style.display = 'none';
-  console.log(cardsTemplate)
-
 }
-
-
-
 
 
 
