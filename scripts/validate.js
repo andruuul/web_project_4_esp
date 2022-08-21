@@ -21,17 +21,34 @@ const checkInputValidity = (formElement, inputElement) => {
 };
 
 const setEventListeners = (formElement) => {
+    console.log("seteventLISTENERS()FUNCIONANDO")
     const inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
     inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement);
     });
+    
+    const hasInvalidInput = (inputList) => {
+        console.log("hasInvalidInput()FUNCIONANDO")
+        console.log()
+        return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+      }); }
+
+      console.log(hasInvalidInput(inputList)) // ESTE HAY QUE CAMBIAR Y USAR EN OTRA FUNCION
+      
+
+      
   }); }
   
-function enableValidation () {formList = Array.from(document.querySelectorAll(".popup__form"))
-  formList.forEach((formElement) => {formElement.addEventListener("submit", (evt) => {
+function enableValidation () {
+    console.log("enableValidation()FUNCIONANDO")
+    formList = Array.from(document.querySelectorAll(".popup__form"))
+    formList.forEach((formElement) => {formElement.addEventListener("submit", (evt) => {
     evt.preventDefault();})
     setEventListeners(formElement)})
    }
+
+//toggleButtonState(inputList, buttonElement)
 
 enableValidation();
