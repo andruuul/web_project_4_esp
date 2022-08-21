@@ -21,13 +21,11 @@ const checkInputValidity = (formElement, inputElement) => {
 };
 
 const hasInvalidInput = (inputList) => {
-  console.log("hasInvalidInput()FUNCIONANDO")
   return inputList.some((inputElement) => {
   return !inputElement.validity.valid;
 }); }
 
 const toggleButtonState = (inputList, buttonElement) => {
-  console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("popup__save-button_inactive");
   } else {
@@ -37,7 +35,6 @@ const toggleButtonState = (inputList, buttonElement) => {
 
 
 const setEventListeners = (formElement) => {
-    console.log("seteventLISTENERS()FUNCIONANDO")
     const inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
     
     const buttonElement = formElement.querySelector(".popup__save-button")
@@ -56,7 +53,6 @@ const setEventListeners = (formElement) => {
 }
   
 function enableValidation () {
-    console.log("enableValidation()FUNCIONANDO")
     formList = Array.from(document.querySelectorAll(".popup__form"))
     formList.forEach((formElement) => {formElement.addEventListener("submit", (evt) => {
     evt.preventDefault();})
