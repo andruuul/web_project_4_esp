@@ -23,6 +23,9 @@ const checkInputValidity = (formElement, inputElement) => {
 const setEventListeners = (formElement) => {
     console.log("seteventLISTENERS()FUNCIONANDO")
     const inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
+    const buttonElement = document.querySelector(".popup__save-button")
+    buttonElement.addEventListener("click", function() {console.log("yayyy")}) //Esto funciona, ahora hacer la TOGGLEBUTTON
+
     inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement);
@@ -30,16 +33,14 @@ const setEventListeners = (formElement) => {
     
     const hasInvalidInput = (inputList) => {
         console.log("hasInvalidInput()FUNCIONANDO")
-        console.log()
         return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
       }); }
 
-      console.log(hasInvalidInput(inputList)) // ESTE HAY QUE CAMBIAR Y USAR EN OTRA FUNCION
-      
-
-      
-  }); }
+      console.log(hasInvalidInput(inputList)) // ESTE HAY QUE CAMBIAR Y USAR EN OTRA FUNCION      
+  }); 
+ 
+}
   
 function enableValidation () {
     console.log("enableValidation()FUNCIONANDO")
