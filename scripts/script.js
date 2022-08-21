@@ -126,7 +126,11 @@ let imagePopupContainer = document.getElementById('popupImageContainer');
 let overlayPictures = document.getElementById('overlay-pictures');
 
 function openImagePopup (evt) {
-  let cardText = elementsGrid.querySelector('.elements-grid__place-name');
+  let cardCloseBtn = evt.target.nextElementSibling
+  let cardDescription = cardCloseBtn.nextElementSibling
+  let cardText = cardDescription.firstElementChild
+ 
+  console.log(cardText)
 
   imagePopupContainer.style.display= 'flex';
   overlayPictures.style.display = 'block';
