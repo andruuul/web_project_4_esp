@@ -140,7 +140,7 @@ function openImagePopup (evt) {
   let popupImageText = imagePopupContainer.querySelector('#popupImageText');
   popupImageText.textContent = cardText.textContent;
 
-  imagePopupContainer.classList.toggle("popup-image_hidden")
+  imagePopupContainer.classList.remove("popup-image_hidden")
   overlayPictures.style.display = 'block';
 }
 
@@ -149,7 +149,7 @@ function openImagePopup (evt) {
 let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
 imagePopupCloseButton.addEventListener('click', closeImagePopup)
 function closeImagePopup() {
-  imagePopupContainer.classList.toggle("popup-image_hidden")
+  imagePopupContainer.classList.add("popup-image_hidden")
   overlayPictures.style.display = 'none';
 }
 //Ocultar el popup de la imagen al hacer click fuera
