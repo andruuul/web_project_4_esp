@@ -63,7 +63,7 @@ function enableValidation () {
 
 enableValidation();
 
-//Entendí que necesito pasarle siempre un formulario a esta función, entocnes dejé el .form__selector
+//Entendí que necesito pasarle siempre un formulario a esta función, mis dos formularios tienen la misma clase, entonces dejé el .form__selector. Gracias!!!
 enableValidation({
   formSelector: ".popup__form",
 }); 
