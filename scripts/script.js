@@ -60,14 +60,9 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg"  }
 ];
 
-//Código nuevo
 const elementsGrid = document.querySelector("#elementsGrid");
-//const cardsElement = cardsTemplate.querySelector(".elements-grid__card").cloneNode(true);
-//const cardsTemplate = document.querySelector("#cardTemplate").content;
-//const cardsPhoto = cardsElement.querySelector(".elements-grid__photo");
-//const cardsPlaceName = cardsElement.querySelector(".elements-grid__place-name");
-//const cardsLikeBtn = cardsElement.querySelector(".elements-grid__like-button");
-//const cardsDeleteBtn = cardsElement.querySelector(".elements-grid__delete-button");
+let imagePopupContainer = document.getElementById('popupImageContainer');
+let overlayPictures = document.getElementById('overlay-pictures');
 
 class Card {
   constructor(placeName, photo) {
@@ -89,43 +84,30 @@ class Card {
     this._element.querySelector(".elements-grid__delete-button").parentElement.remove();
   }
 
+  _openImagePopup() {
+    let cardCloseBtn = this._element.querySelector(".elements-grid__photo").nextElementSibling
+    let cardDescription = cardCloseBtn.nextElementSibling
+    let cardText = cardDescription.firstElementChild
+
+    imagePopupContainer.style.display= 'flex';
+    overlayPictures.style.display = 'block';
+  
+    let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
+  
+    popupImageImage.src = this._element.querySelector(".elements-grid__photo").src;
+  
+    let popupImageText = imagePopupContainer.querySelector('#popupImageText');
+    popupImageText.textContent = cardText.textContent;
+  
+    imagePopupContainer.classList.remove("popup-image_hidden")
+    overlayPictures.style.display = 'block';
+  }
+
   _setEventListeners() {
     this._element.querySelector(".elements-grid__like-button").addEventListener("click", () => {this._likeCard()})
     this._element.querySelector(".elements-grid__delete-button").addEventListener("click", () => {this._removeCard()})
+    this._element.querySelector(".elements-grid__photo").addEventListener("click", () => {this._openImagePopup()})
   }
-
-  //  closePopupContainerNewPlace()
-
-//  cardsDeleteBtn.addEventListener("click", removeCard);
-//  cardsPhoto.addEventListener("click", openImagePopup);
-//}
-////Eliminar un card con el botón delete 
-//function removeCard (evt) {evt.target.}
-////
-//
-////Mostrar la imagen en un popup 
-////(cambiar el src del img en el div de image-popup y el texto)
-//let imagePopupContainer = document.getElementById('popupImageContainer');
-//let overlayPictures = document.getElementById('overlay-pictures');
-//
-//function openImagePopup (evt) {
-//  let cardCloseBtn = evt.target.nextElementSibling
-//  let cardDescription = cardCloseBtn.nextElementSibling
-//  let cardText = cardDescription.firstElementChild
-//
-//  imagePopupContainer.style.display= 'flex';
-//  overlayPictures.style.display = 'block';
-//
-//  let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
-//
-//  popupImageImage.src = evt.target.src;
-//
-//  let popupImageText = imagePopupContainer.querySelector('#popupImageText');
-//  popupImageText.textContent = cardText.textContent;
-//
-//  imagePopupContainer.classList.remove("popup-image_hidden")
-//  overlayPictures.style.display = 'block';
-//}
 
   generateCard() {
     this._element = this._getTemplate();
@@ -144,9 +126,6 @@ initialCards.forEach((item) => {
 
   elementsGrid.prepend(cardReady);
 })
-
-
-//Fin del código nuevo
 
 //Abrir y cerrar formulario para añadir una tarjeta
 
@@ -185,29 +164,26 @@ function addNewPlace () {
   elementsGrid.prepend(customCardReady);
 }
 
+//Ocultar el popup de la imagen al hacer click en el botón de cerrar
+let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
+imagePopupCloseButton.addEventListener('click', closeImagePopup)
+function closeImagePopup() {
+  imagePopupContainer.classList.add("popup-image_hidden")
+  overlayPictures.style.display = 'none';
+}
+//Ocultar el popup de la imagen al hacer click fuera
+overlayPictures.addEventListener('click', closeImagePopup)
 
-//
-//
-////Ocultar el popup de la imagen al hacer click en el botón de cerrar
-//let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
-//imagePopupCloseButton.addEventListener('click', closeImagePopup)
-//function closeImagePopup() {
-//  imagePopupContainer.classList.add("popup-image_hidden")
-//  overlayPictures.style.display = 'none';
-//}
-////Ocultar el popup de la imagen al hacer click fuera
-//overlayPictures.addEventListener('click', closeImagePopup)
-//
-////Ocultar cualquier popul al hacer click en 'esc'
-//document.addEventListener('keydown', (event) => {
-//  if (event.key === 'Escape') {
-//    closeImagePopup();
-//    closePopupContainer();
-//    closePopupContainerNewPlace();
-//  }
-//})
-//
-//
+//Ocultar cualquier popup al hacer click en 'esc'
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeImagePopup();
+    closePopupContainer();
+    closePopupContainerNewPlace();
+  }
+})
+
+
 
 
 
