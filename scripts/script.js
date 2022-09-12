@@ -1,3 +1,5 @@
+import {Card} from './Card.js'
+
 //Abrir y cerrar el modal con el botón *editar* y *cerrar*, correspondientemente
 
 let popupContainer = document.getElementById('popupContainer');
@@ -61,64 +63,6 @@ const initialCards = [
 ];
 
 const elementsGrid = document.querySelector("#elementsGrid");
-let imagePopupContainer = document.getElementById('popupImageContainer');
-let overlayPictures = document.getElementById('overlay-pictures');
-
-class Card {
-  constructor(placeName, photo) {
-    this._placeName = placeName;
-    this._photo = photo;
-  }
-
-  _getTemplate() {
-    const cardsElement = document.querySelector("#cardTemplate").content.querySelector(".elements-grid__card").cloneNode(true);
-
-    return cardsElement;
-  }
-
-  _likeCard() {
-    this._element.querySelector(".elements-grid__like-button").classList.toggle("elements-grid__like-button_active");
-  }
-
-  _removeCard() {
-    this._element.querySelector(".elements-grid__delete-button").parentElement.remove();
-  }
-
-  _openImagePopup() {
-    let cardCloseBtn = this._element.querySelector(".elements-grid__photo").nextElementSibling
-    let cardDescription = cardCloseBtn.nextElementSibling
-    let cardText = cardDescription.firstElementChild
-
-    imagePopupContainer.style.display= 'flex';
-    overlayPictures.style.display = 'block';
-  
-    let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
-  
-    popupImageImage.src = this._element.querySelector(".elements-grid__photo").src;
-  
-    let popupImageText = imagePopupContainer.querySelector('#popupImageText');
-    popupImageText.textContent = cardText.textContent;
-  
-    imagePopupContainer.classList.remove("popup-image_hidden")
-    overlayPictures.style.display = 'block';
-  }
-
-  _setEventListeners() {
-    this._element.querySelector(".elements-grid__like-button").addEventListener("click", () => {this._likeCard()})
-    this._element.querySelector(".elements-grid__delete-button").addEventListener("click", () => {this._removeCard()})
-    this._element.querySelector(".elements-grid__photo").addEventListener("click", () => {this._openImagePopup()})
-  }
-
-  generateCard() {
-    this._element = this._getTemplate();
-
-    this._element.querySelector(".elements-grid__photo").src = this._photo;
-    this._element.querySelector(".elements-grid__place-name").textContent = this._placeName;
-    this._setEventListeners();
-
-    return this._element;
-  }
-}
 
 initialCards.forEach((item) => {
   const card = new Card (item.name, item.link);
@@ -149,7 +93,7 @@ function closePopupContainerNewPlace() {
 
 overlayForms.addEventListener('click', closePopupContainerNewPlace)
 
-//Guardar los cambios hechos en el value de <input> como el nuevo textContent de <p> con el botón *guardar* y cerrar el popup
+//Crear cards nuevas al guardar los cambios hechos en el value de <input> como el nuevo textContent de <p> con el botón *guardar* y cerrar el popup
 
 const newPlaceSaveBtn = document.getElementById('newPlaceSaveButton');
 
@@ -162,10 +106,13 @@ function addNewPlace () {
   const customCardReady = customCard.generateCard()
 
   elementsGrid.prepend(customCardReady);
+  closePopupContainerNewPlace()
 }
 
 //Ocultar el popup de la imagen al hacer click en el botón de cerrar
+let imagePopupContainer = document.getElementById('popupImageContainer');
 let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
+let overlayPictures = document.getElementById('overlay-pictures');
 imagePopupCloseButton.addEventListener('click', closeImagePopup)
 function closeImagePopup() {
   imagePopupContainer.classList.add("popup-image_hidden")
