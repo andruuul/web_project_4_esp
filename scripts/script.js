@@ -40,7 +40,7 @@ saveBtn.addEventListener('click', saveInputChanges)
 function saveInputChanges () {
   defaultUsername.textContent = newUsername.value
   defaultSubtitle.textContent = newSubtitle.value
-  closePopupContainer() //*Muchas gracias por todas tus observaciones!
+  closePopupContainer() 
 }
 
 //Cards iniciales
@@ -60,20 +60,93 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg"  }
 ];
 
-//Cargar las Cards iniciales
-
+//Código nuevo
 const elementsGrid = document.querySelector("#elementsGrid");
-const cardsTemplate = document.querySelector("#cardTemplate").content;
+//const cardsElement = cardsTemplate.querySelector(".elements-grid__card").cloneNode(true);
+//const cardsTemplate = document.querySelector("#cardTemplate").content;
+//const cardsPhoto = cardsElement.querySelector(".elements-grid__photo");
+//const cardsPlaceName = cardsElement.querySelector(".elements-grid__place-name");
+//const cardsLikeBtn = cardsElement.querySelector(".elements-grid__like-button");
+//const cardsDeleteBtn = cardsElement.querySelector(".elements-grid__delete-button");
 
-for (var i=0;i<initialCards.length;i++) {
-const cardsElement = cardsTemplate.querySelector(".elements-grid__card").cloneNode(true);
-cardsElement.querySelector(".elements-grid__photo").src = initialCards[i].link;
-cardsElement.querySelector(".elements-grid__place-name").textContent = initialCards[i].name;
-elementsGrid.prepend(cardsElement)
-cardsElement.querySelector(".elements-grid__like-button").addEventListener("click", likeCard);
-cardsElement.querySelector(".elements-grid__delete-button").addEventListener("click", removeCard);
-cardsElement.querySelector(".elements-grid__photo").addEventListener("click",openImagePopup);
+class Card {
+  constructor(placeName, photo) {
+    this._placeName = placeName;
+    this._photo = photo;
+  }
+
+  _getTemplate() {
+    const cardsElement = document.querySelector("#cardTemplate").content.querySelector(".elements-grid__card").cloneNode(true);
+
+    return cardsElement;
+  }
+
+  _likeCard() {
+    this._element.querySelector(".elements-grid__like-button").classList.toggle("elements-grid__like-button_active");
+  }
+
+  _removeCard() {
+    this._element.querySelector(".elements-grid__delete-button").parentElement.remove();
+  }
+
+  _setEventListeners() {
+    this._element.querySelector(".elements-grid__like-button").addEventListener("click", () => {this._likeCard()})
+    this._element.querySelector(".elements-grid__delete-button").addEventListener("click", () => {this._removeCard()})
+  }
+
+  //  closePopupContainerNewPlace()
+
+//  cardsDeleteBtn.addEventListener("click", removeCard);
+//  cardsPhoto.addEventListener("click", openImagePopup);
+//}
+////Eliminar un card con el botón delete 
+//function removeCard (evt) {evt.target.}
+////
+//
+////Mostrar la imagen en un popup 
+////(cambiar el src del img en el div de image-popup y el texto)
+//let imagePopupContainer = document.getElementById('popupImageContainer');
+//let overlayPictures = document.getElementById('overlay-pictures');
+//
+//function openImagePopup (evt) {
+//  let cardCloseBtn = evt.target.nextElementSibling
+//  let cardDescription = cardCloseBtn.nextElementSibling
+//  let cardText = cardDescription.firstElementChild
+//
+//  imagePopupContainer.style.display= 'flex';
+//  overlayPictures.style.display = 'block';
+//
+//  let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
+//
+//  popupImageImage.src = evt.target.src;
+//
+//  let popupImageText = imagePopupContainer.querySelector('#popupImageText');
+//  popupImageText.textContent = cardText.textContent;
+//
+//  imagePopupContainer.classList.remove("popup-image_hidden")
+//  overlayPictures.style.display = 'block';
+//}
+
+  generateCard() {
+    this._element = this._getTemplate();
+
+    this._element.querySelector(".elements-grid__photo").src = this._photo;
+    this._element.querySelector(".elements-grid__place-name").textContent = this._placeName;
+    this._setEventListeners();
+
+    return this._element;
+  }
 }
+
+initialCards.forEach((item) => {
+  const card = new Card (item.name, item.link);
+  const cardReady = card.generateCard();
+
+  elementsGrid.prepend(cardReady);
+})
+
+
+//Fin del código nuevo
 
 //Abrir y cerrar formulario para añadir una tarjeta
 
@@ -103,68 +176,38 @@ const newPlaceSaveBtn = document.getElementById('newPlaceSaveButton');
 
 newPlaceSaveBtn.addEventListener('click', addNewPlace)
 function addNewPlace () {
-  const cardsElement = cardsTemplate.querySelector('.elements-grid__card').cloneNode(true);
   let cardURL = document.querySelector("#inputNewPlaceURL");
   let cardTitle = document.querySelector("#inputNewPlaceTitle");
-  cardsElement.querySelector(".elements-grid__photo").src = cardURL.value;
-  cardsElement.querySelector(".elements-grid__place-name").textContent = cardTitle.value;
-  elementsGrid.prepend(cardsElement)
-  closePopupContainerNewPlace()
-  cardsElement.querySelector(".elements-grid__like-button").addEventListener("click", likeCard);
-  cardsElement.querySelector(".elements-grid__delete-button").addEventListener("click", removeCard);
-  cardsElement.querySelector(".elements-grid__photo").addEventListener("click", openImagePopup);
-}
-//Eliminar un card con el botón delete 
-function removeCard (evt) {evt.target.parentElement.remove()}
+  
+  const customCard = new Card (cardTitle.value, cardURL.value);
+  const customCardReady = customCard.generateCard()
 
-//Activar y desactivar el boton "like" al hacer click en tarjetas nuevas
-function likeCard (evt) {evt.target.classList.toggle("elements-grid__like-button_active")}
-
-//Mostrar la imagen en un popup 
-//(cambiar el src del img en el div de image-popup y el texto)
-let imagePopupContainer = document.getElementById('popupImageContainer');
-let overlayPictures = document.getElementById('overlay-pictures');
-
-function openImagePopup (evt) {
-  let cardCloseBtn = evt.target.nextElementSibling
-  let cardDescription = cardCloseBtn.nextElementSibling
-  let cardText = cardDescription.firstElementChild
-
-  imagePopupContainer.style.display= 'flex';
-  overlayPictures.style.display = 'block';
-
-  let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
-
-  popupImageImage.src = evt.target.src;
-
-  let popupImageText = imagePopupContainer.querySelector('#popupImageText');
-  popupImageText.textContent = cardText.textContent;
-
-  imagePopupContainer.classList.remove("popup-image_hidden")
-  overlayPictures.style.display = 'block';
+  elementsGrid.prepend(customCardReady);
 }
 
 
-//Ocultar el popup de la imagen al hacer click en el botón de cerrar
-let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
-imagePopupCloseButton.addEventListener('click', closeImagePopup)
-function closeImagePopup() {
-  imagePopupContainer.classList.add("popup-image_hidden")
-  overlayPictures.style.display = 'none';
-}
-//Ocultar el popup de la imagen al hacer click fuera
-overlayPictures.addEventListener('click', closeImagePopup)
-
-//Ocultar cualquier popul al hacer click en 'esc'
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    closeImagePopup();
-    closePopupContainer();
-    closePopupContainerNewPlace();
-  }
-})
-
-
+//
+//
+////Ocultar el popup de la imagen al hacer click en el botón de cerrar
+//let imagePopupCloseButton = imagePopupContainer.querySelector('#popupImageCloseButton');
+//imagePopupCloseButton.addEventListener('click', closeImagePopup)
+//function closeImagePopup() {
+//  imagePopupContainer.classList.add("popup-image_hidden")
+//  overlayPictures.style.display = 'none';
+//}
+////Ocultar el popup de la imagen al hacer click fuera
+//overlayPictures.addEventListener('click', closeImagePopup)
+//
+////Ocultar cualquier popul al hacer click en 'esc'
+//document.addEventListener('keydown', (event) => {
+//  if (event.key === 'Escape') {
+//    closeImagePopup();
+//    closePopupContainer();
+//    closePopupContainerNewPlace();
+//  }
+//})
+//
+//
 
 
 
