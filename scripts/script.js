@@ -1,4 +1,5 @@
 import {Card} from './Card.js'
+import {FormValidator} from './FormValidator.js'
 
 //Abrir y cerrar el modal con el botón *editar* y *cerrar*, correspondientemente
 
@@ -10,13 +11,14 @@ let closeBtn = document.getElementById('popupCloseButton');
 editBtn.addEventListener('click', openPopupContainer);
 function openPopupContainer() {
   popupContainer.classList.remove("popup_hidden")
-  overlayForms.style.display = 'block';
+  overlayForms.style.display = 'block';  
 }
 
 closeBtn.addEventListener('click', closePopupContainer);
 function closePopupContainer() {
   popupContainer.classList.add("popup_hidden")
   overlayForms.style.display = 'none';
+  
 }
 
 //Cerrar el modal al hacer click fuera
@@ -87,7 +89,7 @@ newPlaceCloseBtn.addEventListener('click', closePopupContainerNewPlace);
 function closePopupContainerNewPlace() {
   popupContainerNewPlace.classList.add("popup_hidden");
   overlayForms.style.display = 'none';
-  }
+}
 
 //Cerrar el modal al hacer click fuera
 
