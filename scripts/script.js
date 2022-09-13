@@ -11,7 +11,7 @@ let closeBtn = document.getElementById('popupCloseButton');
 editBtn.addEventListener('click', openPopupContainer);
 function openPopupContainer() {
   popupContainer.classList.remove("popup_hidden")
-  overlayForms.style.display = 'block';  
+  overlayForms.style.display = 'block'; 
 }
 
 closeBtn.addEventListener('click', closePopupContainer);
@@ -131,7 +131,6 @@ document.addEventListener('keydown', (event) => {
     closePopupContainerNewPlace();
   }
 })
-
 
 
 
