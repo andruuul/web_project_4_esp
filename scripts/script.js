@@ -8,11 +8,6 @@ let overlayForms = document.getElementById('overlay-forms');
 let editBtn = document.getElementById('editButton');
 let closeBtn = document.getElementById('popupCloseButton');
 
-popupContainer.forEach(() => {
-  const validation = new FormValidator (form, input);
-  validation.enableValidation();
-})
-
 editBtn.addEventListener('click', openPopupContainer);
 function openPopupContainer() {
   popupContainer.classList.remove("popup_hidden")

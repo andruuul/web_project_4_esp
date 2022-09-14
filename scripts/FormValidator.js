@@ -1,7 +1,7 @@
 export class FormValidator {
   constructor(form, input) {
-    this.form = [form];
-    this.input = [input];
+    this.form = form;
+    this.input = input;
     this.FormValidation = this.enableValidation();
   }
 
@@ -29,9 +29,9 @@ export class FormValidator {
   
   _checkInputValidity (formElement, inputElement) {
     if (!inputElement.validity.valid) {
-      showError(formElement, inputElement, inputElement.validationMessage);
+      this._showError(formElement, inputElement, inputElement.validationMessage);
     } else {
-      hideError(formElement, inputElement);
+      this._hideError(formElement, inputElement);
     }
   };
   
@@ -41,23 +41,23 @@ export class FormValidator {
   }); }
 
   _setEventListeners(formElement) {
-    const _inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
+    //const _inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
     const _buttonElement = formElement.querySelector(".popup__save-button")
     // aquí, para comprobar el estado del botón al principio
-    this._toggleButtonState(_inputList, _buttonElement);
+    this._toggleButtonState(this.input, _buttonElement);
 
-    _inputList.forEach((inputElement) => {
+    this.input.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       this._checkInputValidity(formElement, inputElement);
       // y aquí, para comprobarlo cada vez que haya cambios en la entrada de algún campo
-      this._toggleButtonState(_inputList, _buttonElement);
+      this._toggleButtonState(this.input, _buttonElement);
     });
     }); 
   }
 
   enableValidation() {
-    formList = Array.from(document.querySelectorAll(".popup__form"))
-    formList.forEach((formElement) => {
+    //formList = Array.from(document.querySelectorAll(".popup__form"))
+    this.form.forEach((formElement) => {
       formElement.addEventListener("submit", (evt) => {
         evt.preventDefault();})
     this._setEventListeners(formElement)})
