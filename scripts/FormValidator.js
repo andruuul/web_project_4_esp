@@ -1,4 +1,5 @@
-export class FormValidator {
+export class FormValidator //POR FAVORRRR :((( necesito ayuda, no sé qué hacer. ¿Cómo lo agrego al script.js para activar la validación?? Llevo 3 días en esto
+{
   constructor(form, input) {
     this.form = form;
     this.input = input;

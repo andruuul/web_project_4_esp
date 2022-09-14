@@ -1,5 +1,8 @@
 import {Card} from './Card.js'
-import {FormValidator} from './FormValidator.js'
+import {FormValidator} from './FormValidator.js' //POR FAVORRRR :((( necesito ayuda, no sé qué hacer. ¿Cómo lo agrego al script.js para activar la validación?? Llevo 3 días en esto.
+//POR FAVORRRR :((( necesito ayuda, no sé qué hacer. ¿Cómo lo agrego al script.js para activar la validación?? Llevo 3 días en esto
+
+
 
 //Abrir y cerrar el modal con el botón *editar* y *cerrar*, correspondientemente
 
