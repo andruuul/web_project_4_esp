@@ -1,8 +1,5 @@
 import {Card} from './Card.js'
-import {FormValidator} from './FormValidator.js' //POR FAVORRRR :((( necesito ayuda, no sé qué hacer. ¿Cómo lo agrego al script.js para activar la validación?? Llevo 3 días en esto.
-//POR FAVORRRR :((( necesito ayuda, no sé qué hacer. ¿Cómo lo agrego al script.js para activar la validación?? Llevo 3 días en esto
-
-
+import {FormValidator} from './FormValidator.js'
 
 //Abrir y cerrar el modal con el botón *editar* y *cerrar*, correspondientemente
 
@@ -21,7 +18,6 @@ closeBtn.addEventListener('click', closePopupContainer);
 function closePopupContainer() {
   popupContainer.classList.add("popup_hidden")
   overlayForms.style.display = 'none';
-  
 }
 
 //Cerrar el modal al hacer click fuera
@@ -49,6 +45,16 @@ function saveInputChanges () {
   defaultSubtitle.textContent = newSubtitle.value
   closePopupContainer() 
 }
+
+
+function initiateValidation () {
+  const formList = Array.from(document.querySelectorAll(".popup__form"));
+  const inputList = Array.from(document.querySelectorAll(".popup__input"));
+  console.log(inputList)
+  const validator = new FormValidator (formList, inputList);
+  validator.enableValidation();
+  }
+  initiateValidation();
 
 //Cards iniciales
 

@@ -1,9 +1,7 @@
-export class FormValidator //POR FAVORRRR :((( necesito ayuda, no sé qué hacer. ¿Cómo lo agrego al script.js para activar la validación?? Llevo 3 días en esto
-{
+export class FormValidator {
   constructor(form, input) {
     this.form = form;
     this.input = input;
-    this.FormValidation = this.enableValidation();
   }
 
   _toggleButtonState = (inputList, buttonElement) => {
@@ -15,17 +13,17 @@ export class FormValidator //POR FAVORRRR :((( necesito ayuda, no sé qué hacer
   };
 
   _showError (formElement, inputElement, errorMessage) {
-    const _errorElement = formElement.querySelector(`.${inputElement.id}-input-error`)
+    const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`)
     inputElement.classList.add("popup__input_type_error");
-    _errorElement.classList.add("popup__input-error_active");
-    _errorElement.textContent = errorMessage;
+    errorElement.classList.add("popup__input-error_active");
+    errorElement.textContent = errorMessage;
   };
   
   _hideError (formElement, inputElement) {
-    const _errorElement = formElement.querySelector(`.${inputElement.id}-input-error`)
+    const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`)
     inputElement.classList.remove("popup__input_type_error");
-    _errorElement.classList.remove("popup__input-error_active");
-    _errorElement.textContent = "";
+    errorElement.classList.remove("popup__input-error_active");
+    errorElement.textContent = "";
   };
   
   _checkInputValidity (formElement, inputElement) {
@@ -42,16 +40,16 @@ export class FormValidator //POR FAVORRRR :((( necesito ayuda, no sé qué hacer
   }); }
 
   _setEventListeners(formElement) {
-    //const _inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
+    const _inputList = Array.from(formElement.querySelectorAll(".popup__input")) 
     const _buttonElement = formElement.querySelector(".popup__save-button")
     // aquí, para comprobar el estado del botón al principio
-    this._toggleButtonState(this.input, _buttonElement);
+    this._toggleButtonState(_inputList, _buttonElement);
 
-    this.input.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {
-      this._checkInputValidity(formElement, inputElement);
+    _inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", () => {
+      this._checkInputValidity (formElement, inputElement);
       // y aquí, para comprobarlo cada vez que haya cambios en la entrada de algún campo
-      this._toggleButtonState(this.input, _buttonElement);
+      this._toggleButtonState (_inputList, _buttonElement);
     });
     }); 
   }
@@ -61,6 +59,6 @@ export class FormValidator //POR FAVORRRR :((( necesito ayuda, no sé qué hacer
     this.form.forEach((formElement) => {
       formElement.addEventListener("submit", (evt) => {
         evt.preventDefault();})
-    this._setEventListeners(formElement)})
+    this._setEventListeners(formElement);})
    }
 }
