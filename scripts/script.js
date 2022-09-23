@@ -1,5 +1,5 @@
-import {Card} from './Card.js'
-import {FormValidator} from './FormValidator.js'
+import {Card} from './components/Card.js'
+import {FormValidator} from './components/FormValidator.js'
 
 //Abrir y cerrar el modal con el botón *editar* y *cerrar*, correspondientemente
 
