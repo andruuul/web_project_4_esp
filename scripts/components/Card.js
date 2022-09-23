@@ -1,4 +1,4 @@
-   export class Card {
+   export default class Card {
     constructor(placeName, photo) {
       this._placeName = placeName;
       this._photo = photo;
