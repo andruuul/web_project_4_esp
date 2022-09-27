@@ -23,11 +23,11 @@
       let cardDescription = cardCloseBtn.nextElementSibling
       let cardText = cardDescription.firstElementChild
       let imagePopupContainer = document.getElementById('popupImageContainer');
-      let overlayPictures = document.getElementById('overlay-pictures');
+      let overlay = document.querySelector('.overlay');
 
   
       imagePopupContainer.style.display= 'flex';
-      overlayPictures.style.display = 'block';
+      overlay.style.display = 'block';
     
       let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
     
@@ -36,8 +36,8 @@
       let popupImageText = imagePopupContainer.querySelector('#popupImageText');
       popupImageText.textContent = cardText.textContent;
     
-      imagePopupContainer.classList.remove("popup-image_hidden")
-      overlayPictures.style.display = 'block';
+      imagePopupContainer.classList.remove("popup_hidden")
+      overlay.style.display = 'block';
 
       console.log("clickkkkas")
     }

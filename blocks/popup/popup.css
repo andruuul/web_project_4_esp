@@ -24,6 +24,9 @@
 .popup_hidden {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0s;
+  transition: visibility 0s, opacity 0s, height 0s, width 0s;
+  overflow: hidden;
+  height: 0;
+  width: 0;
   overflow: hidden;
 }
