@@ -14,3 +14,4 @@ export const initialCards = [
 ];
 
 export const elementsGridSection = ".elements-grid"
+export const overlay = document.querySelector(".overlay");

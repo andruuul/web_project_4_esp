@@ -1,20 +1,36 @@
+import { overlay } from "../utils/constants.js";
+
 export default class Popup {
+  
   constructor (popupSelector) {
-    this._popupSelector = popupSelector;
+    this._popupSelector = popupSelector
+    this._popup = document.querySelector(this._popupSelector)
+
+  }
+  
+  open() {
+    this._popup.classList.remove("popup_hidden")
+    overlay.style.display = 'block'; 
   }
 
-  open() {} //abren y cierran el popup LO MISMO QUE LOS
-  //EVT.LSTRS CREO
-
-  close() {} 
-
-  _handleEscClose() {} //almacena la lógica para cerrar el popup con esc
-  // YYYYY el área sombreada
-
-  setEventListeners() {
-    //aqui puedo definir las constantes y ponerles
-    //los multiples event listeners según los botones etc
-    //sin pex pq al final se aplican a todos
-    //¿Se agregará el ESC aquí con su evt. listener?
+  close() {
+    this._popup.classList.add("popup_hidden");
+    overlay.style.display = "none";
   }
-}
+
+  _handleEscClose() {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        this.close(); 
+      }
+    })
+  } 
+
+  setEventListeners(closeButton) {
+    const overlay = document.querySelector(".overlay")
+    overlay.addEventListener("click", () => {this.close()})
+    document.querySelector(closeButton).addEventListener("click", () => {this.close()
+    console.log(this._popup)})
+    this._handleEscClose();
+  }
+} 
