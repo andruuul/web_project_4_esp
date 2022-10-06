@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector,callback){
+  constructor(popupSelector, callback){
     super(popupSelector);
     this._callback = callback;
   }
@@ -11,8 +11,7 @@ export default class PopupWithForm extends Popup {
     const inputValues = {};
     inputs.forEach(input => {
         inputValues[input.name] = input.value;
-    });
-    console.log(inputValues)   
+    });   
   }
   
   setEventListeners(openButton, closeButton, saveButton){

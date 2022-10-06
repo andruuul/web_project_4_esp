@@ -10,9 +10,12 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 const cardsList = new Section ({
   items: initialCards, 
   renderer: (item) => {
-    const card = new Card (item.name, item.link);
+    const card = new Card ({placeName: item.name, photo: item.link, callbackImage: (evt) => {
+      const imagePopup = new PopupWithImage ("#popupImageContainer")
+      imagePopup.open(evt)
+    }
+  });
     const cardReady = card.generateCard();
-    cardReady.addEventListener("click", (evt) => {openImagePopup(evt)} ) //ESTO CAMBIARÁ POR LA CLASE POPUPWITHIMAGE
     cardsList.addItem(cardReady);
     },
   },
@@ -40,11 +43,13 @@ function addNewPlace () {
   let cardURL = document.querySelector("#inputNewPlaceURL");
   let cardTitle = document.querySelector("#inputNewPlaceTitle");
   
-  const customCard = new Card (cardTitle.value, cardURL.value);
+  const customCard = new Card ({placeName: cardTitle.value, photo: cardURL.value, callbackImage: (evt) => {
+    const imagePopup = new PopupWithImage ("#popupImageContainer")//
+    imagePopup.open(evt)
+  }});
   const customCardReady = customCard.generateCard()
 
   elementsGrid.prepend(customCardReady);
-  customCardReady.addEventListener("click", (evt) => {openImagePopup(evt)}) //ESTO CAMBIARÁ POR LA CLASE POPUPWITHIMAGE
 
   document.querySelector("#popupContainerNewPlace").classList.add("popup_hidden")
   document.querySelector(".overlay").style.display = "none";
@@ -81,33 +86,3 @@ newPlacePopup.setEventListeners(".profile-grid__add-button", "#newPlaceCloseButt
 
 const imagePopup = new PopupWithImage ("#popupImageContainer")
 imagePopup.setEventListeners("#popupImageCloseButton")
-
-
-
-
-//POPUPWITHIMAGE
-
-
-function openImagePopup(evt) {
-  let cardCloseBtn = evt.target.nextElementSibling
-  let cardDescription = cardCloseBtn.nextElementSibling
-  let cardText = cardDescription.firstElementChild
-  let imagePopupContainer = document.getElementById('popupImageContainer');
-  let overlay = document.querySelector('.overlay');
-
-
-  imagePopupContainer.style.display= 'flex';
-  overlay.style.display = 'block';
-
-  let popupImageImage = imagePopupContainer.querySelector('#popupImageImage');
-
-  popupImageImage.src = evt.target.src;
-
-  let popupImageText = imagePopupContainer.querySelector('#popupImageText');
-  popupImageText.textContent = cardText.textContent;
-
-  imagePopupContainer.classList.remove("popup_hidden")
-  overlay.style.display = 'block';
-
-  console.log("clickkkkas")
-}
