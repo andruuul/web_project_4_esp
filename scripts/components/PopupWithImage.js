@@ -2,7 +2,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
 
-  open(evt) { //debes añadir una imagen al popup y el correspondiente atributo de imagen src junto con una leyenda para la imagen.
+  open(evt) { 
     super.open()
     let cardCloseBtn = evt.target.nextElementSibling
     let cardDescription = cardCloseBtn.nextElementSibling

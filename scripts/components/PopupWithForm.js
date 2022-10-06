@@ -6,24 +6,31 @@ export default class PopupWithForm extends Popup {
     this._callback = callback;
   }
 
-  _getInputValues(){ //¿Dónde lo llamo?
+  _getInputValues(){ //¿Dónde lo llamo?, este al final, no lo usé.
     const inputs = this._popup.querySelectorAll(".popup__input");
     const inputValues = {};
     inputs.forEach(input => {
         inputValues[input.name] = input.value;
     });   
+    return inputValues
   }
   
-  setEventListeners(openButton, closeButton, saveButton){
-    //this._popup.querySelector("form").addEventListener("submit",this._callback) //Pero, ¿cómo le aplico el callback?¿Cómo uso _getInputValues?
+  setEventListeners(openButton, closeButton){
+    
     super.setEventListeners(closeButton);
-    document.querySelector(openButton).addEventListener("click", () => {this.open()})    
-    if (saveButton) {document.querySelector(saveButton).addEventListener("click", () => {this.close()})}
+    this._popup.querySelector(".popup__form").addEventListener("submit", (evt) => {
+      evt.preventDefault()
+      this._callback() //Aquí debería ir la llamada a _getInputValues()?
+      this.close()
+    })
+    document.querySelector(openButton).addEventListener("click", () => {
+      this.open()
+    }) 
   }
 
 
   close(){
     super.close();
-    //this._popup.querySelector('form').reset() //Si lo agrego, la validación flopea. Fix validation.
+    //this._popup.querySelector('.popup__form').reset() //Si lo agrego, la info del perfil de usuario se resetea también.
   }
 }
