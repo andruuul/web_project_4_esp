@@ -1,10 +1,14 @@
 import Card from '../scripts/components/Card.js'
 import {FormValidator} from '../scripts/components/FormValidator.js'
 import Section from '../scripts/components/Section.js';
-import { initialCards, elementsGridSection } from '../scripts/utils/constants.js';
+import { initialCards, elementsGridSection, inputSubtitle, inputUserName } from '../scripts/utils/constants.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+
+const userInfo = new UserInfo( document.getElementById('defaultUsername'), document.getElementById('defaultSubtitle') );
+inputUserName.value = userInfo.getUserInfo().name;
+inputSubtitle.value = userInfo.getUserInfo().job;
 
 const cardsList = new Section ({
   items: initialCards, 
@@ -33,20 +37,11 @@ function initiateValidation () {
 initiateValidation();
 
 
-const profilePopup = new PopupWithForm ("#popupContainer", () => {
-  const changeUserInfo = new UserInfo({
-    name: document.getElementById('defaultUsername'), 
-    job: document.getElementById('defaultSubtitle')
-  })
-  changeUserInfo.setUserInfo();
+const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
+   userInfo.setUserInfo(name, job);
 })
 profilePopup.setEventListeners("#editButton", "#popupCloseButton")
 
-const preloadUserInfo = new UserInfo({
-  name: document.getElementById('defaultUsername'), 
-  job: document.getElementById('defaultSubtitle')
-})
-preloadUserInfo.getUserInfo();
 
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", () => {
   let cardURL = document.querySelector("#inputNewPlaceURL");

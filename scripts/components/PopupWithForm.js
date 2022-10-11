@@ -20,7 +20,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners(closeButton);
     this._popup.querySelector(".popup__form").addEventListener("submit", (evt) => {
       evt.preventDefault()
-      this._callback() //Aquí debería ir la llamada a _getInputValues()?
+      this._callback(this._getInputValues()) //Aquí debería ir la llamada a _getInputValues()?
       this.close()
     })
     document.querySelector(openButton).addEventListener("click", () => {
@@ -31,6 +31,6 @@ export default class PopupWithForm extends Popup {
 
   close(){
     super.close();
-    //this._popup.querySelector('.popup__form').reset() //Si lo agrego, la info del perfil de usuario se resetea también.
+    this._popup.querySelector('.popup__form').reset() //Si lo agrego, la info del perfil de usuario se resetea también.
   }
 }
