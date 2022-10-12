@@ -1,11 +1,11 @@
-import "./index.css";
-import Card from './components/Card.js'
-import {FormValidator} from './components/FormValidator.js'
-import Section from './components/Section.js';
-import { initialCards, elementsGridSection, inputSubtitle, inputUserName } from './utils/constants.js'; 
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import UserInfo from './components/UserInfo.js';
+import './index.css';
+import Card from '../components/Card.js'
+import {FormValidator} from '../components/FormValidator.js'
+import Section from '../components/Section.js';
+import { initialCards, elementsGridSection, inputSubtitle, inputUserName } from '../utils/constants.js'; 
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 
 const userInfo = new UserInfo(document.getElementById('defaultUsername'), document.getElementById('defaultSubtitle'));
 inputUserName.value = userInfo.getUserInfo().name;
@@ -41,24 +41,23 @@ initiateValidation();
 const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
    userInfo.setUserInfo(name, job);
 })
-profilePopup.setEventListeners("#editButton", "#popupCloseButton")
+profilePopup.setEventListeners("#editButton")
 
 
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", () => {
-  let cardURL = document.querySelector("#inputNewPlaceURL");
-  let cardTitle = document.querySelector("#inputNewPlaceTitle");
+  const cardURL = document.querySelector("#inputNewPlaceURL");
+  const cardTitle = document.querySelector("#inputNewPlaceTitle");
   const customCard = new Card ({placeName: cardTitle.value, photo: cardURL.value, callbackImage: (evt) => {
     const imagePopup = new PopupWithImage ("#popupImageContainer")
     imagePopup.open(evt)
   }});
   const customCardReady = customCard.generateCard()
   elementsGrid.prepend(customCardReady);
-  
 })
-newPlacePopup.setEventListeners(".profile-grid__add-button", "#newPlaceCloseButton")
+newPlacePopup.setEventListeners(".profile-grid__add-button")
 
 
 const imagePopup = new PopupWithImage ("#popupImageContainer")
-imagePopup.setEventListeners("#popupImageCloseButton")
+imagePopup.setEventListeners()
 
 

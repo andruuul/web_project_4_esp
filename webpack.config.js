@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // plugin de con
 module.exports = {
   devtool: 'inline-source-map', //Para facilitar la depuración (debugging) en el navegador, puedes añadir la opción devtool al principio del archivo
   entry: {
-    main: "./src/index.js"
+    main: "./src/pages/index.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),

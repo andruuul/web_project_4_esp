@@ -8,11 +8,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999999;
-  opacity: 1;
   height: auto;
   width: auto;
-  transition: opacity .7s, height 0s, width 0s;
   overflow: visible;
   background: none;
 }
-

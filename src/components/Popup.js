@@ -11,11 +11,12 @@ export default class Popup {
   open() {
     this._popup.classList.remove("popup_hidden")
     overlay.style.display = 'block'; 
+    this._handleEscClose();
   }
 
   close() {
     this._popup.classList.add("popup_hidden");
-    overlay.style.display = "none";
+    overlay.style.display = "none"; 
   }
 
   _handleEscClose() {
@@ -23,14 +24,13 @@ export default class Popup {
       if (event.key === 'Escape') {
         this.close(); 
       }
-    })
+    }, {once: true})
   } 
 
-  setEventListeners(closeButton) {
+  setEventListeners() {
     const overlay = document.querySelector(".overlay")
     overlay.addEventListener("click", () => {this.close()})
-    document.querySelector(closeButton).addEventListener("click", () => {this.close()})
-    this._handleEscClose();
+    this._popup.querySelector(".popup__close-button").addEventListener("click", () => {this.close()})
   }
 } 
  

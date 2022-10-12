@@ -6,7 +6,7 @@ export default class PopupWithForm extends Popup {
     this._callback = callback;
   }
 
-  _getInputValues(){ //¿Dónde lo llamo?, este al final, no lo usé.
+  _getInputValues(){ 
     const inputs = this._popup.querySelectorAll(".popup__input");
     const inputValues = {};
     inputs.forEach(input => {
@@ -15,22 +15,16 @@ export default class PopupWithForm extends Popup {
     return inputValues
   }
   
-  setEventListeners(openButton, closeButton){
+  setEventListeners(openButton){
     
-    super.setEventListeners(closeButton);
+    super.setEventListeners();
     this._popup.querySelector(".popup__form").addEventListener("submit", (evt) => {
       evt.preventDefault()
-      this._callback(this._getInputValues()) //Aquí debería ir la llamada a _getInputValues()?
+      this._callback(this._getInputValues()) 
       this.close()
     })
     document.querySelector(openButton).addEventListener("click", () => {
       this.open()
     }) 
-  }
-
-
-  close(){
-    super.close();
-    this._popup.querySelector('.popup__form').reset() //Si lo agrego, la info del perfil de usuario se resetea también.
   }
 }
