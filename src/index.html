@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/normalize.css"> 
+    <link rel ="stylesheet" href="./index.css">
+    <title>Around the US</title>
+</head>
+<body>
+  <div class="page">
+    
+    <header class="header">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Around the U.S.">
+      <img class="header__line" src="<%=require('./images/line.svg')%>" alt="Dividing line">
+    </header>
+ 
+    <main class="content">
+      <section class="profile-grid">
+        <img class="profile-grid__avatar" src="<%=require('./images/profile-photo.jpg')%>" alt="Profile photo">
+        <div class="profile-grid__information">
+          <p class="profile-grid__username" id="defaultUsername">Jacques Cousteau</p>
+          <button id="editButton" class="profile-grid__edit-button"></button>
+          <p class="profile-grid__subtitle" id="defaultSubtitle">Explorador</p>
+        </div>
+        <button class="profile-grid__add-button"></button>
+      </section>
+
+      <div id="popupContainer" class="popup popup_hidden">
+        <div class="popup__title-and-button">
+          <button id="popupCloseButton" class="popup__close-button"></button>
+          <p class="popup__title">Edit profile</p>
+        </div>
+        <form class="popup__form" id="profile-information-form">
+          <input class="popup__input" type="text" id="inputUsername" placeholder="Nombre" required minlength="2" maxlength="40" name="name">
+          <span class="popup__input-error inputUsername-input-error"></span>
+          <input class="popup__input" type="text" id="inputSubtitle" placeholder="Acerca de mí" required minlength="2" maxlength="200" name="job">  
+          <span class="popup__input-error popup__input-error-lower inputSubtitle-input-error"></span>
+          <button class="popup__save-button" id="saveButton" type="submit">Guardar</button>
+        </form>
+      </div>
+      <div class="overlay"></div>
+      
+      <div id="popupContainerNewPlace" class="popup popup_hidden">
+        <div class="popup__title-and-button">
+          <button id="newPlaceCloseButton" class="popup__close-button"></button>
+          <p class="popup__title">New Place</p>
+        </div>
+        <form class="popup__form" id="new-place-form">
+          <input class="popup__input" type="text" id="inputNewPlaceTitle" placeholder="Título" required minlength="2" maxlength="30">
+          <span class="popup__input-error inputNewPlaceTitle-input-error"></span>
+          <input class="popup__input" type="url" id="inputNewPlaceURL" placeholder="URL de la imagen" required>
+          <span class="popup__input-error popup__input-error-lower inputNewPlaceURL-input-error"></span>
+          <button class="popup__save-button" id="newPlaceSaveButton" type="submit">Crear</button>
+        </form>
+
+      </div>
+
+
+
+      <section class="elements-grid" id="elementsGrid"> 
+      
+      </section>
+
+      <div id="popupImageContainer" class="popup popup-image popup_hidden">
+          <button id="popupImageCloseButton" class="popup-image__close-button"></button>
+          <img id="popupImageImage" src=" " class="popup-image__image">
+          <p id="popupImageText" class="popup-image__text"></p>
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022. Alrededor de los EEUU</p>
+    </footer>
+    
+  </div>
+
+  <template id="cardTemplate">
+    <div class="elements-grid__card">
+      <img class="elements-grid__photo" alt="">
+      <button class="elements-grid__delete-button"></button>
+      <div class ="elements-grid__description">
+        <p class="elements-grid__place-name"></p>
+        <button class="elements-grid__like-button"></button>
+      </div>
+    </div>
+  </template>
+
+  <script type="module" src="./index.js"></script>
+  
+</body>
+</html>
