@@ -1,4 +1,4 @@
-export class FormValidator {
+export class FormValidator { //No cambié casi nada, porque me costó mucho hacer que funcione así, no sé a qué se refiere con pasar solo una cosa.
   constructor(form, input) {
     this.form = form;
     this.input = input;
