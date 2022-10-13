@@ -17,7 +17,7 @@ export default class Card {
   }
 
   _removeCard() {
-    this._deleteBtn.closest(".elements-grid__card").remove();
+    this._element.remove();
   }
 
   _setEventListeners() {
@@ -32,8 +32,10 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector(".elements-grid__photo")
 
-    this._element.querySelector(".elements-grid__photo").src = this._photoSource;
+    this._cardImage.src = this._photoSource;
+    this._cardImage.alt = this._placeName;
     this._element.querySelector(".elements-grid__place-name").textContent = this._placeName;
     this._setEventListeners();
 
