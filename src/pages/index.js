@@ -29,15 +29,33 @@ const cardsList = new Section ({
 
 
 cardsList.renderItems();
+/////////////////////////////////////////////////////////////////////////////aquí
+//function initiateValidation () {
+  const formValidators = {}
 
-function initiateValidation () {
-  const formList = Array.from(document.querySelectorAll(".popup__form"));
-  const inputList = Array.from(document.querySelectorAll(".popup__input"));
-  const validator = new FormValidator (formList, inputList);
-  validator.enableValidation();
-}
-initiateValidation();
+  // habilitar la validación
+  const enableValidation = (settings) => {
+    const formList = Array.from(document.querySelectorAll(".popup__form"))
+    formList.forEach((formElement) => {
+      const validator = new FormValidator(formElement, settings)
+      // aquí obtienes el nombre del formulario
+      const formName = formElement.getAttribute('name')
+  
+     // aquí almacena un validador por el `nombre` del formulario
+      formValidators[formName] = validator;
+     validator.enableValidation();
+    });
+  };
+  
+  enableValidation(settings);
+  
+//Me da el siguiente error: "settings is not defined", por eso no quería
+//cambiarlo jajjaa, no sé muy bien cómo manejar el parámetro "settings"
 
+
+//}
+//initiateValidation();
+//////////////////////////////////////////////////////////////////////////////
 
 const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
    userInfo.setUserInfo(name, job);
