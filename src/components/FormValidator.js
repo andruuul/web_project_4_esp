@@ -3,12 +3,8 @@ export class FormValidator {
   constructor(form, settings) {
     this._form = form;
     this._settings = settings;
-    this._settings.inactiveButtonSelector = "popup__save-button_inactive";
-    this._submitButton = this._form.querySelector(".popup__save-button")
-    this._inputList = Array.from(this._form.querySelectorAll(".popup__input"))
-    this._errorElement = this._form.querySelector(`.${inputElement.id}-input-error`)
-    this._settings.errorSelector = "popup__input_type_error"
-    this._settings.errorActiveSelector = "popup__input-error_active"
+    this._submitButton = this._form.querySelector(settings.saveButtonSelector)
+    this._inputList = Array.from(this._form.querySelectorAll(settings.inputSelector))
   }
 
   resetValidation() { //Y puedes llamarlo en index.js al hacer clic en los botones de abriR
@@ -44,12 +40,14 @@ export class FormValidator {
   };
 
   _showError (inputElement) {
+    this._errorElement = this._form.querySelector(`.${inputElement.id}-input-error`)
     inputElement.classList.add(this._settings.errorSelector);
     this._errorElement.classList.add(this._settings.errorActiveSelector);
     this._errorElement.textContent = inputElement.validationMessage;
   };
 
   _hideError (inputElement) {
+    this._errorElement = this._form.querySelector(`.${inputElement.id}-input-error`)
     inputElement.classList.remove(this._settings.errorSelector);
     this._errorElement.classList.remove(this._settings.errorActiveSelector);
     this._errorElement.textContent = "";

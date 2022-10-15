@@ -17,3 +17,10 @@ export const elementsGridSection = ".elements-grid"
 export const inputUserName = document.querySelector('#inputUsername')
 export const inputSubtitle = document.querySelector('#inputSubtitle')
 export const cardTemplate = "#cardTemplate"
+export const settings = {
+  inactiveButtonSelector: "popup__save-button_inactive", 
+  saveButtonSelector: ".popup__save-button",
+  inputSelector: ".popup__input",
+  errorSelector: "popup__input_type_error",
+  errorActiveSelector: "popup__input-error_active"
+}

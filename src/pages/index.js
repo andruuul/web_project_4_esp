@@ -3,7 +3,7 @@ import '../styles/normalize.css'
 import Card from '../components/Card.js'
 import {FormValidator} from '../components/FormValidator.js'
 import Section from '../components/Section.js';
-import { initialCards, elementsGridSection, inputSubtitle, inputUserName, cardTemplate } from '../utils/constants.js'; 
+import { initialCards, elementsGridSection, inputSubtitle, inputUserName, cardTemplate, settings } from '../utils/constants.js'; 
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
@@ -29,8 +29,7 @@ const cardsList = new Section ({
 
 
 cardsList.renderItems();
-/////////////////////////////////////////////////////////////////////////////aquí
-//function initiateValidation () {
+
   const formValidators = {}
 
   // habilitar la validación
@@ -48,14 +47,8 @@ cardsList.renderItems();
   };
   
   enableValidation(settings);
-  
-//Me da el siguiente error: "settings is not defined", por eso no quería
-//cambiarlo jajjaa, no sé muy bien cómo manejar el parámetro "settings"
 
-
-//}
-//initiateValidation();
-//////////////////////////////////////////////////////////////////////////////
+  console.log(formValidators)
 
 const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
    userInfo.setUserInfo(name, job);
