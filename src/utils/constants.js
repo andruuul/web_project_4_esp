@@ -24,3 +24,5 @@ export const settings = {
   errorSelector: "popup__input_type_error",
   errorActiveSelector: "popup__input-error_active"
 }
+export const addBtn = document.querySelector(".profile-grid__add-button")
+export const editBtn = document.querySelector("#editButton")

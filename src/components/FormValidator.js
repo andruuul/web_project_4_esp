@@ -1,5 +1,4 @@
 export class FormValidator {
- //necesito ayuda en index.js
   constructor(form, settings) {
     this._form = form;
     this._settings = settings;
@@ -7,7 +6,7 @@ export class FormValidator {
     this._inputList = Array.from(this._form.querySelectorAll(settings.inputSelector))
   }
 
-  resetValidation() { //Y puedes llamarlo en index.js al hacer clic en los botones de abriR
+  resetValidation() {
     this._toggleButtonState();
 
     this._inputList.forEach((inputElement) => {

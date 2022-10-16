@@ -30,7 +30,7 @@
           <button id="popupCloseButton" class="popup__close-button"></button>
           <p class="popup__title">Edit profile</p>
         </div>
-        <form class="popup__form" id="profile-form" name="user">
+        <form class="popup__form" name="profile-form">
           <input class="popup__input" type="text" id="inputUsername" placeholder="Nombre" required minlength="2" maxlength="40" name="name">
           <span class="popup__input-error inputUsername-input-error"></span>
           <input class="popup__input" type="text" id="inputSubtitle" placeholder="Acerca de mí" required minlength="2" maxlength="200" name="job">  
@@ -45,10 +45,10 @@
           <button id="newPlaceCloseButton" class="popup__close-button"></button>
           <p class="popup__title">New Place</p>
         </div>
-        <form class="popup__form" id="place-form" name="place">
-          <input class="popup__input" type="text" id="inputNewPlaceTitle" placeholder="Título" required minlength="2" maxlength="30">
+        <form class="popup__form" name="place-form">
+          <input class="popup__input" type="text" id="inputNewPlaceTitle" placeholder="Título" required minlength="2" maxlength="30" name="name">
           <span class="popup__input-error inputNewPlaceTitle-input-error"></span>
-          <input class="popup__input" type="url" id="inputNewPlaceURL" placeholder="URL de la imagen" required>
+          <input class="popup__input" type="url" id="inputNewPlaceURL" placeholder="URL de la imagen" required name ="link">
           <span class="popup__input-error popup__input-error-lower inputNewPlaceURL-input-error"></span>
           <button class="popup__save-button popup__save-button_inactive" id="newPlaceSaveButton" type="submit">Crear</button>
         </form>

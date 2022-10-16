@@ -16,6 +16,7 @@ export default class Popup {
   close() {
     this._popup.classList.add("popup_hidden");
     this._overlay.style.display = "none"; 
+    //ya no puse el "removeEventListener" porque configuré el _handleEscClose para que solo funcione una vez, después de eso, se "desactiva" la función
   }
 
   _handleEscClose() {
