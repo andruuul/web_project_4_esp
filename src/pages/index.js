@@ -62,9 +62,6 @@ editBtn.addEventListener("click", () => {
 profilePopup.setEventListeners()
 
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
-  //const cardURL = document.querySelector("#inputNewPlaceURL");
-  //const cardTitle = document.querySelector("#inputNewPlaceTitle");
-//  const customCard = new Card ({placeName: cardTitle.value, photo: cardURL.value, cardTemplateSelector:cardTemplate, callbackImage: (evt) => {
   const customCardReady = createCard(cardData)
   cardsList.addItem(customCardReady);
 });
