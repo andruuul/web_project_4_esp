@@ -7,21 +7,23 @@ export default class Popup {
   }
   
   open() {
-    this._popup.classList.remove("popup_hidden")
-    this._overlay.style.display = 'block'; 
-    let _handleEscClose = (event) => {
-      if (event.key === 'Escape') {
-        this.close(); 
-        document.removeEventListener('keydown', _handleEscClose);
-      }
-    }
-    document.addEventListener('keydown', _handleEscClose);
+    this._popup.classList.remove("popup_hidden");
+    this._overlay.style.display = "block";
+    document.addEventListener("keydown", this._handleEscClose);
   }
+
+  _handleEscClose = (event) => {
+    if (event.key === "Escape") {
+      this.close();
+    }
+  };
 
   close() {
     this._popup.classList.add("popup_hidden");
     this._overlay.style.display = "none";
+    document.removeEventListener("keydown", this._handleEscClose);
   }
+
   
   setEventListeners() {
     this._overlay.addEventListener("click", () => {this.close()})
