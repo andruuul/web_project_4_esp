@@ -26,6 +26,3 @@ export const settings = {
 }
 export const addBtn = document.querySelector(".profile-grid__add-button")
 export const editBtn = document.querySelector("#editButton")
-export const defaultUsername = document.getElementById('defaultUsername')
-export const defaultSubtitle = document.getElementById('defaultSubtitle')
-export const profilePicture = document.querySelector(".profile-grid__avatar")
