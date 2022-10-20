@@ -7,44 +7,60 @@ import { elementsGridSection, inputSubtitle, inputUserName, cardTemplate, settin
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import { data } from 'autoprefixer';
 
-function getUserInfoFromServer() {
-  fetch("https://around.nomoreparties.co/v1/web_es_cohort_02/users/me", {
-    headers: {
-      authorization: "c0a099b3-69e1-4897-8731-fc3bd1c460e5"
-    }
-  })
-  .then(res => res.json())
-  .then((result) => {
-    defaultUsername.textContent = result.name
-    defaultSubtitle.textContent = result.about
-    profilePicture.src = result.avatar
-  })
-}
-getUserInfoFromServer();
+fetch("https://around.nomoreparties.co/v1/web_es_cohort_02/users/me", {
+  headers: {
+    authorization: "c0a099b3-69e1-4897-8731-fc3bd1c460e5"
+  }
+})
+.then(res => res.json())
+.then((result) => {
+  defaultUsername.textContent = result.name
+  defaultSubtitle.textContent = result.about
+  profilePicture.src = result.avatar
+})
 
-function getCardsFromServer() {
+fetch("https://around.nomoreparties.co/v1/web_es_cohort_02/cards", {
+  headers: {
+    authorization: "c0a099b3-69e1-4897-8731-fc3bd1c460e5"
+  }
+})
+.then(res => res.json())
+.then((cardsFromServer) => {
+  console.log(cardsFromServer)
+  const cardsList = new Section ({
+    items: cardsFromServer, 
+    renderer: (item) => {
+      const cardReady = createCard(item);
+      cardsList.addItem(cardReady);
+    },
+    },
+    elementsGridSection
+  );
+  cardsList.renderItems();
+})
+
+const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
+  //const customCardReady = createCard(cardData)    //supongo que esto...
+  //document.querySelector(".elements-grid").prepend(customCardReady)  // ...y esto va a pasar cuando se carguen las imágenes del servidor
+  
   fetch("https://around.nomoreparties.co/v1/web_es_cohort_02/cards", {
-    headers: {
-      authorization: "c0a099b3-69e1-4897-8731-fc3bd1c460e5"
-    }
+  method: "POST",
+  headers: {
+    authorization: "c0a099b3-69e1-4897-8731-fc3bd1c460e5",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: cardData.name,
+    link: cardData.link
   })
-  .then(res => res.json())
-  .then((cardsFromServer) => {
-    console.log(cardsFromServer)
-    const cardsList = new Section ({
-      items: cardsFromServer, 
-      renderer: (item) => {
-        const cardReady = createCard(item);
-        cardsList.addItem(cardReady);
-      },
-      },
-      elementsGridSection
-    );
-    cardsList.renderItems();
-  })
-}
-getCardsFromServer();
+})
+.then(res => res.json())
+.then((data) => {
+  console.log(data)
+})
+});
 
 const userInfo = new UserInfo(defaultUsername, defaultSubtitle); 
 
@@ -86,11 +102,12 @@ editBtn.addEventListener("click", () => {
 })
 profilePopup.setEventListeners()
 
+/*
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
   const customCardReady = createCard(cardData)
   cardsList.addItem(customCardReady);
 });
-
+*/
 
 addBtn.addEventListener("click", () => {
   newPlacePopup.open();
