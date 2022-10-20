@@ -14,9 +14,9 @@ class Api {
           .then(res => res.json())
           .then((cardsFromServer) => {
             console.log(cardsFromServer)
-            const cardsList = new Section ({
-              items: cardsFromServer, 
-              renderer: (item) => {
+            const cardsList = new Section ({ //Ayuda, por favor. Nunca hicimos nada parecido en la plataforma, no sé ni cómo empezar :(
+              items: cardsFromServer,        //mis fetch están en index.js, ahí hice que funcionen un poco, pero si necesitan estar en
+              renderer: (item) => {          //una clase diferente... entonces no podré usar Section
                 const cardReady = createCard(item);
                 cardsList.addItem(cardReady);
               },
