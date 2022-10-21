@@ -63,11 +63,10 @@ const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
 
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
   api.addNewCard(cardData)
-    .then(res => res.json())
     .then((data) => {
       console.log(data)
-      const customCardReady = createCard(data)    //esto...
-      document.querySelector(".elements-grid").prepend(customCardReady)  // ...y esto pasa solo cuando se reinicia la página!!
+      const customCardReady = createCard(data)
+      document.querySelector(".elements-grid").prepend(customCardReady)
     })
     .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
     .finally(() => {}) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
