@@ -1,42 +1,68 @@
-class Api {
-    constructor({baseUrl, headers}) {
-      this._baseUrl = baseUrl;
-      this._headers = headers;
-      this._authorization = headers.authorization;
-      }
-  
-    getInitialCards() {
-      fetch(this._baseUrl+`/cards`, {
-          headers: {
-            authorization: this._authorization
-          }
-        })
-          .then(res => res.json())
-          .then((cardsFromServer) => {
-            console.log(cardsFromServer)
-            const cardsList = new Section ({ //Ayuda, por favor. Nunca hicimos nada parecido en la plataforma, no sé ni cómo empezar :(
-              items: cardsFromServer,        //mis fetch están en index.js, ahí hice que funcionen un poco, pero si necesitan estar en
-              renderer: (item) => {          //una clase diferente... entonces no podré usar Section
-                const cardReady = createCard(item);
-                cardsList.addItem(cardReady);
-              },
-              },
-              elementsGridSection
-            );
-            cardsList.renderItems();
-          })
-      // ...
-    }
-  
-    // otros métodos para trabajar con la API
-  }
-  
+export default class Api {
 
-  //Pasar esto a index.js?
-  const api = new Api({
-    baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_02",
-    headers: {
-      authorization: "c0a099b3-69e1-4897-8731-fc3bd1c460e5",
-      "Content-Type": "application/json"
+  constructor({baseUrl, headers}) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+    this._authorization = headers.authorization;
+  }
+
+  _request(url, options) {
+    return fetch(url, options).then(this._checkResponse)
+  }
+
+  _checkResponse(res) { 
+    if (res.ok) {
+      return res.json();
     }
-  });
+    // si el servidor devuelve un error, rechaza el promise
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
+  getInitialCards() {
+    return this._request(`${this._baseUrl}/cards`, {
+      headers: {
+        authorization: this._authorization
+      }
+    })
+  }
+
+  getProfileInfo() {
+    return this._request(`${this._baseUrl}/users/me`, {
+      headers: {
+        authorization: this._authorization
+      }
+    })
+  }
+
+  editProfile(name, job) {
+    return this._request(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        about: job
+      })
+    })
+  }
+
+  addNewCard(cardData){ //Aquí, las cartas se añaden solo después de refrescar la página
+    return this._request(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: cardData.name, 
+        link: cardData.link
+      })
+    })
+  }
+
+  // cardLikes()
+  // Para este, necesito hacer "push" al nombre del usuario en el array de "likes" : [] y luego contar su .length? 
+
+  }
