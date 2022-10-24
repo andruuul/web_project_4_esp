@@ -30,8 +30,10 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
 
 
 api.getProfileInfo().then((userInfo) => {
-  defaultUsername.textContent = userInfo.name
-  defaultSubtitle.textContent = userInfo.about
+  console.log(userInfo)
+  //defaultUsername.textContent = userInfo.name
+  //defaultSubtitle.textContent = userInfo.about
+  userInfo.setUserInfo(userInfo.name, userInfo.about)
   profilePicture.src = userInfo.avatar
 })
   .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
