@@ -6,4 +6,7 @@
   overflow: hidden;
   display: flex;
   margin: auto;
+  z-index: 0;
+  position: relative;
 }
+

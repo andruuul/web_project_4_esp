@@ -16,9 +16,12 @@
  
     <main class="content">
       <section class="profile-grid">
-        <img class="profile-grid__avatar" src="<%=require('./images/profile-photo.jpg')%>" alt="Profile photo">
+        <div class="profile-grid__avatar-box">
+          <img class="profile-grid__avatar-edit" src="<%=require('./images/profile-edit-button.svg')%>">
+          <img class="profile-grid__avatar" src="<%=require('./images/profile-photo.jpg')%>" alt="Profile photo">
+        </div>
         <div class="profile-grid__information">
-          <p class="profile-grid__username" id="defaultUsername">Jacques Cousteau</p>
+          <p class="profile-grid__username" id="defaultUsernme"a>Jacques Cousteau</p>
           <button id="editButton" class="profile-grid__edit-button"></button>
           <p class="profile-grid__subtitle" id="defaultSubtitle">Explorador</p>
         </div>
@@ -61,8 +64,6 @@
         </div>
         <button class="popup__save-button" id="confirmButton" type="button">Sí</button>
       </div>
-
-
 
       <section class="elements-grid" id="elementsGrid"> 
       
