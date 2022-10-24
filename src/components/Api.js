@@ -62,29 +62,23 @@ export default class Api {
       })
     })
   }
-/*
-  fetch(API_URL,{
-    method: 'PUT',
-    headers:{
-    'Content-Type':'application/json'
-    },
-    body: JSON.stringify(DATA_WHICH_WE_WANT_TO_SEND)
-  })
+
+  /* 
+  deleteCard(cardId) {
+    return this._request(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ///algo aquí??
+      })
+  }
   */
 
-cardLikes(cardData) {
-  return this._request(`${this._baseUrl}/cards/likes/${cardData._id} `, {
-    method: "PUT",
-    headers: {
-      authorization: this._authorization,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({hola: "hola"})
-  })
-}
 
-
-  // cardLikes()
+  // likeCard()
   // Para este, necesito hacer "push" al nombre del usuario en el array de "likes" : [] y luego contar su .length? 
 
   }
