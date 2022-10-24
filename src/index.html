@@ -52,7 +52,14 @@
           <span class="popup__input-error popup__input-error-lower inputNewPlaceURL-input-error"></span>
           <button class="popup__save-button popup__save-button_inactive" id="newPlaceSaveButton" type="submit">Crear</button>
         </form>
+      </div>
 
+      <div id="confirmationPopup" class="popup popup__confirmation popup_hidden">
+        <div class="popup__title-and-button">
+          <button id="confirmationPopupCloseButton" class="popup__close-button"></button>
+          <p class="popup__title popup__title-confirmation">¿Estás seguro/a?</p>
+        </div>
+        <button class="popup__save-button" id="confirmButton" type="button">Sí</button>
       </div>
 
 
@@ -81,7 +88,10 @@
       <button class="elements-grid__delete-button"></button>
       <div class ="elements-grid__description">
         <p class="elements-grid__place-name"></p>
-        <button class="elements-grid__like-button"></button>
+        <div class = elements-grid__like-section>
+          <button class="elements-grid__like-button"></button>
+          <p class="elements-grid__likes">1</p>
+        </div>
       </div>
     </div>
   </template>

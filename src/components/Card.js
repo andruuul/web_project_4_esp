@@ -1,7 +1,8 @@
 export default class Card {
-  constructor({placeName, photo, cardTemplateSelector, callbackImage}) {
+  constructor({placeName, photo, likes, cardTemplateSelector, callbackImage}) {
     this._placeName = placeName;
     this._photoSource = photo;
+    this._likes = likes;
     this._callbackImage = callbackImage;
     this._cardTemplateSelector = cardTemplateSelector;
   }
@@ -14,6 +15,7 @@ export default class Card {
 
   _likeCard() {
     this._likeBtn.classList.toggle("elements-grid__like-button_active");
+    console.log(this._likes)
   }
 
   _removeCard() {
@@ -33,10 +35,12 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector(".elements-grid__photo")
+    this._cardLikes = this._element.querySelector(".elements-grid__likes")
 
     this._cardImage.src = this._photoSource;
     this._cardImage.alt = this._placeName;
     this._element.querySelector(".elements-grid__place-name").textContent = this._placeName;
+    this._cardLikes.textContent = this._likes.length
     this._setEventListeners();
 
     return this._element;

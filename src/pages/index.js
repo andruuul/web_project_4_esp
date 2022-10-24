@@ -39,6 +39,7 @@ api.getProfileInfo().then((userInfo) => {
 
 
 api.getInitialCards().then((cardsFromServer) => {
+  console.log(cardsFromServer)
   const cardsList = new Section ({
     items: cardsFromServer,
     renderer: (item) => {
@@ -72,11 +73,17 @@ const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) =
     .finally(() => {}) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
 });
 
+/*
+  console.log(api.cardLikes().then((data) => {         //Cómo hacer
+  console.log(data)
+  }))
+*/
+
 
 const userInfo = new UserInfo(defaultUsername, defaultSubtitle); 
 
 function createCard(item) { //este se puede quedar aquí,supongo
-  const card = new Card ({placeName: item.name, photo: item.link, cardTemplateSelector:cardTemplate, callbackImage: (evt) => {
+  const card = new Card ({placeName: item.name, photo: item.link, likes: item.likes, cardTemplateSelector:cardTemplate, callbackImage: (evt) => {
     imagePopup.open(evt)
   }})
   const cardElement = card.generateCard();
