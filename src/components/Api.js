@@ -70,9 +70,24 @@ export default class Api {
       }})
   }
   
-
-
-  // likeCard()
-  // Para este, necesito hacer "push" al nombre del usuario en el array de "likes" : [] y luego contar su .length? 
-
+  /*
+  addCardLike(cardId) {
+    return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json"
+      }})
   }
+
+  deleteCardLike(cardId) {
+    return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json"
+      }})
+  }
+  */
+  }
+

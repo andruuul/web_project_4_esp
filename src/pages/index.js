@@ -13,8 +13,10 @@ import {
   editBtn, 
   defaultSubtitle, 
   defaultUsername, 
-  profilePicture 
+  profilePicture,
+  confirmBtn
 } from '../utils/constants.js'; 
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
@@ -48,7 +50,7 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
     .then(({ name, about, /*avatar,*/ _id }) => {
       loggedUserId = _id;
       userInfo.setUserInfo(name, about, loggedUserId)
-      profilePicture.src = userInfo.avatar
+      //profilePicture.src = userInfo.avatar
     })
     .then(() => {
       return api.getInitialCards()
@@ -77,10 +79,8 @@ const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
 })
 
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
-  console.log(cardData)
   api.addNewCard(cardData)
     .then((data) => {
-      console.log(data)
       const customCardReady = createCard(data)
       document.querySelector(".elements-grid").prepend(customCardReady)
     })
@@ -94,6 +94,13 @@ const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) =
   }))
 */
 
+const confirmationPopup = new PopupWithConfirmation("#confirmationPopup", (id) => {
+  api.deleteCard(id)
+  /*¿Cómo puedo hacer que la carta desaparezca cuando haga click en el "sí" SIN NECESIDAD de refrescar la página?
+  Por ejemplo, aquí quiero poner "card._remove()", pero como es parte de otra clase en una promesa, no puedo acceder a su valor */
+})
+
+
 function createCard(item) {
   const card = new Card ({
     placeName: item.name, 
@@ -104,8 +111,12 @@ function createCard(item) {
     cardTemplateSelector:cardTemplate, 
     callbackImage: (evt) => {
       imagePopup.open(evt)
-    }, 
-    deleteCallback: () => {api.deleteCard(item._id)}})
+    },
+    confirmCallback: () => {
+      confirmationPopup.open()
+      confirmationPopup.setEventListeners(item._id, card._removeCard)
+    }
+  })
   const cardElement = card.generateCard(userInfo.getUserInfo().id);
   return cardElement
 }
