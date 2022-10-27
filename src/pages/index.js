@@ -1,3 +1,6 @@
+                            
+                            ///Hola! Tengo una pregunta en la línea 93. ¿Podrías ayudarme?
+
 import './index.css';
 import '../styles/normalize.css'
 import Card from '../components/Card.js'
@@ -13,8 +16,7 @@ import {
   editBtn, 
   defaultSubtitle, 
   defaultUsername, 
-  profilePicture,
-  confirmBtn
+  //profilePicture
 } from '../utils/constants.js'; 
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -30,7 +32,7 @@ const api = new Api({
   }
 });
 
-/* Aquí qué hago??
+/* Esto lo haré hasta el final
 Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
 // destructure la respuesta
   .then(([userData, cards]) => {
@@ -68,14 +70,14 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
       cardsList.renderItems();
     })
     .catch((err) => { console.log("Error. La solicitud ha fallado: ", err); })
-    .finally(() => { }) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
+    .finally(() => { }) //cambiar el texto del botón
 
 
 const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
   userInfo.setUserInfo(name, job);
   api.editProfile(name, job)
     .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
-    .finally(() => {}) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
+    .finally(() => {}) //cambiar el texto del botón
 })
 
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
@@ -85,16 +87,10 @@ const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) =
       document.querySelector(".elements-grid").prepend(customCardReady)
     })
     .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
-    .finally(() => {}) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
+    .finally(() => {}) //cambiar el texto del botón
 });
 
-/*
-  console.log(api.cardLikes().then((data) => {         //Cómo hacer
-  console.log(data)
-  }))
-*/
-
-const confirmationPopup = new PopupWithConfirmation("#confirmationPopup", (id) => {
+const confirmationPopup = new PopupWithConfirmation("#confirmationPopup", (id) => {                     //////Esta es mi pregunta:
   api.deleteCard(id)
   /*¿Cómo puedo hacer que la carta desaparezca cuando haga click en el "sí" SIN NECESIDAD de refrescar la página?
   Por ejemplo, aquí quiero poner "card._remove()", pero como es parte de otra clase en una promesa, no puedo acceder a su valor */
