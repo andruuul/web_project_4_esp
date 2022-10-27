@@ -1,10 +1,13 @@
 export default class Card {
-  constructor({placeName, photo, likes, cardTemplateSelector, callbackImage}) {
+  constructor({placeName, photo, likes, cardId, ownerId, cardTemplateSelector, callbackImage, deleteCallback}) {
     this._placeName = placeName;
     this._photoSource = photo;
     this._likes = likes;
     this._callbackImage = callbackImage;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._cardId = cardId;
+    this._ownerId = ownerId;
+    this._deleteCallback = deleteCallback;
   }
 
   _getTemplate() {
@@ -16,9 +19,11 @@ export default class Card {
   _likeCard() {
     this._likeBtn.classList.toggle("elements-grid__like-button_active");
     console.log(this._likes)
+    //this._likes.length
   }
 
   _removeCard() {
+    this._deleteCallback()
     this._element.remove();
   }
 
@@ -32,10 +37,15 @@ export default class Card {
     this._photo.addEventListener('click', (evt) => {this._callbackImage(evt);})
   }
 
-  generateCard() {
+  generateCard(loggedUserId) {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector(".elements-grid__photo")
     this._cardLikes = this._element.querySelector(".elements-grid__likes")
+    
+    if(this._ownerId !== loggedUserId) {
+      this._element.querySelector(".elements-grid__delete-button").classList.add("elements-grid__delete-button_hidden")
+    }
+
 
     this._cardImage.src = this._photoSource;
     this._cardImage.alt = this._placeName;

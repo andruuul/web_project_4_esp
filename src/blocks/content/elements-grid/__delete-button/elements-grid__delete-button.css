@@ -22,3 +22,7 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+.elements-grid__delete-button_hidden {
+  visibility: hidden;
+}

@@ -14,7 +14,6 @@ export default class Api {
     if (res.ok) {
       return res.json();
     }
-    // si el servidor devuelve un error, rechaza el promise
     return Promise.reject(`Error: ${res.status}`);
   }
 
@@ -48,7 +47,7 @@ export default class Api {
     })
   }
 
-  addNewCard(cardData){ //Aquí, las cartas se añaden solo después de refrescar la página
+  addNewCard(cardData){
     return this._request(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
@@ -57,25 +56,20 @@ export default class Api {
       },
       body: JSON.stringify({
         name: cardData.name, 
-        link: cardData.link,
-        likes: cardData.likes.length
+        link: cardData.link
       })
     })
   }
 
-  /* 
   deleteCard(cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        ///algo aquí??
-      })
+      }})
   }
-  */
+  
 
 
   // likeCard()

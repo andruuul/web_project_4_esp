@@ -3,7 +3,18 @@ import '../styles/normalize.css'
 import Card from '../components/Card.js'
 import { FormValidator } from '../components/FormValidator.js'
 import Section from '../components/Section.js';
-import { elementsGridSection, inputSubtitle, inputUserName, cardTemplate, settings, addBtn, editBtn, defaultSubtitle, defaultUsername, profilePicture } from '../utils/constants.js'; 
+import { 
+  elementsGridSection, 
+  inputSubtitle, 
+  inputUserName, 
+  cardTemplate, 
+  settings, 
+  addBtn, 
+  editBtn, 
+  defaultSubtitle, 
+  defaultUsername, 
+  profilePicture 
+} from '../utils/constants.js'; 
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
@@ -28,43 +39,45 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
   });
   */
 
+  const userInfo = new UserInfo(defaultUsername, defaultSubtitle);
 
-api.getProfileInfo().then((userInfo) => {
-  console.log(userInfo)
-  //defaultUsername.textContent = userInfo.name
-  //defaultSubtitle.textContent = userInfo.about
-  userInfo.setUserInfo(userInfo.name, userInfo.about)
-  profilePicture.src = userInfo.avatar
-})
-  .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
-  .finally(() => {}) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
+  let loggedUserId = "";
+  
+  api
+  .getProfileInfo()
+    .then(({ name, about, /*avatar,*/ _id }) => {
+      loggedUserId = _id;
+      userInfo.setUserInfo(name, about, loggedUserId)
+      profilePicture.src = userInfo.avatar
+    })
+    .then(() => {
+      return api.getInitialCards()
+    })
+    .then((cardsFromServer) => {
+      const cardsList = new Section({
+        items: cardsFromServer,
+        renderer: (item) => {
+          const cardReady = createCard(item);
+          cardsList.addItem(cardReady);
+        },
+      },
+        elementsGridSection
+      );
+      cardsList.renderItems();
+    })
+    .catch((err) => { console.log("Error. La solicitud ha fallado: ", err); })
+    .finally(() => { }) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
 
-
-api.getInitialCards().then((cardsFromServer) => {
-  console.log(cardsFromServer)
-  const cardsList = new Section ({
-    items: cardsFromServer,
-    renderer: (item) => {
-      const cardReady = createCard(item);
-      cardsList.addItem(cardReady);
-    },
-    },
-    elementsGridSection
-  );
-  cardsList.renderItems();
-})
-  .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
-  .finally(() => {}) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
 
 const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
   userInfo.setUserInfo(name, job);
-  // editProfile()
   api.editProfile(name, job)
     .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
     .finally(() => {}) //en este bloque, la mayoría de las veces cambia el texto del botón y oculta el efecto de carga)
 })
 
 const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
+  console.log(cardData)
   api.addNewCard(cardData)
     .then((data) => {
       console.log(data)
@@ -81,27 +94,29 @@ const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) =
   }))
 */
 
-
-const userInfo = new UserInfo(defaultUsername, defaultSubtitle); 
-
-function createCard(item) { //este se puede quedar aquí,supongo
-  const card = new Card ({placeName: item.name, photo: item.link, likes: item.likes, cardTemplateSelector:cardTemplate, callbackImage: (evt) => {
-    imagePopup.open(evt)
-  }})
-  const cardElement = card.generateCard();
+function createCard(item) {
+  const card = new Card ({
+    placeName: item.name, 
+    photo: item.link, 
+    likes: item.likes, 
+    cardId: item._id, 
+    ownerId: item.owner._id, 
+    cardTemplateSelector:cardTemplate, 
+    callbackImage: (evt) => {
+      imagePopup.open(evt)
+    }, 
+    deleteCallback: () => {api.deleteCard(item._id)}})
+  const cardElement = card.generateCard(userInfo.getUserInfo().id);
   return cardElement
 }
 
 const formValidators = {}
 
-// habilitar la validación
 const enableValidation = (settings) => {
   const formList = Array.from(document.querySelectorAll(".popup__form"))
   formList.forEach((formElement) => {
     const validator = new FormValidator(formElement, settings)
-    // aquí obtienes el nombre del formulario
     const formName = formElement.getAttribute('name')
-   // aquí almacena un validador por el `nombre` del formulario
     formValidators[formName] = validator;
     validator.enableValidation();
   });
