@@ -1,6 +1,3 @@
-                            
-                            ///Hola! Tengo una pregunta en la línea 93. ¿Podrías ayudarme?
-
 import './index.css';
 import '../styles/normalize.css'
 import Card from '../components/Card.js'
@@ -73,14 +70,14 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
     .finally(() => { }) //cambiar el texto del botón
 
 
-const profilePopup = new PopupWithForm ("#popupContainer", ({name, job}) => {
+const profilePopup = new PopupWithForm ({popupSelector:"#popupContainer", handleSubmit: ({name, job}) => {
   userInfo.setUserInfo(name, job);
   api.editProfile(name, job)
     .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
     .finally(() => {}) //cambiar el texto del botón
-})
+}})
 
-const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) => {
+const newPlacePopup = new PopupWithForm ({popupSelector:"#popupContainerNewPlace", handleSubmit: (cardData) => {
   api.addNewCard(cardData)
     .then((data) => {
       const customCardReady = createCard(data)
@@ -88,14 +85,19 @@ const newPlacePopup = new PopupWithForm ("#popupContainerNewPlace", (cardData) =
     })
     .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
     .finally(() => {}) //cambiar el texto del botón
-});
+}});
 
-const confirmationPopup = new PopupWithConfirmation("#confirmationPopup", (id) => {                     //////Esta es mi pregunta:
+let cardToDelete = null;
+
+const confirmationPopup = new PopupWithConfirmation("#confirmationPopup", (id) => {
   api.deleteCard(id)
-  /*¿Cómo puedo hacer que la carta desaparezca cuando haga click en el "sí" SIN NECESIDAD de refrescar la página?
-  Por ejemplo, aquí quiero poner "card._remove()", pero como es parte de otra clase en una promesa, no puedo acceder a su valor */
+  .then(() => {
+    confirmationPopup.close()
+    cardToDelete.removeCard()
+  })
+  .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
 })
-
+confirmationPopup.setEventListeners()
 
 function createCard(item) {
   const card = new Card ({
@@ -110,7 +112,8 @@ function createCard(item) {
     },
     confirmCallback: () => {
       confirmationPopup.open()
-      confirmationPopup.setEventListeners(item._id, card._removeCard)
+      cardToDelete = card
+      confirmationPopup.updateId(item._id)
     }
   })
   const cardElement = card.generateCard(userInfo.getUserInfo().id);

@@ -7,10 +7,14 @@ export default class PopupWithConfirmation extends Popup {
     this._confirmBtn = document.querySelector("#confirmButton")
   }
 
-  setEventListeners(id) {
+  updateId(id){
+    this._id = id
+  }
+
+  setEventListeners() {
+    super.setEventListeners()
     this._confirmBtn.addEventListener("click", () => {
-        super.close()
-        this._callback(id)
+        this._callback(this._id)
     })
   }
 

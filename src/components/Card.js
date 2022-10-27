@@ -23,22 +23,9 @@ export default class Card {
     //this._likes.length
   }
   
-  _removeCard() {
+  removeCard() {
     this._element.remove();
   }
-
-
-  /*
-  _setEventListeners() {
-    this._likeBtn = this._element.querySelector(".elements-grid__like-button")
-    this._deleteBtn = this._element.querySelector(".elements-grid__delete-button")
-    this._photo = this._element.querySelector(".elements-grid__photo")
-
-    this._likeBtn.addEventListener("click", () => {this._likeCard()})
-    this._deleteBtn.addEventListener("click", () => {this._removeCard()})
-    this._photo.addEventListener('click', (evt) => {this._callbackImage(evt);})
-  }
-  */
 
   _setEventListeners() {
     this._likeBtn = this._element.querySelector(".elements-grid__like-button")
