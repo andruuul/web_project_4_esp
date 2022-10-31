@@ -128,6 +128,14 @@ function createCard(item) {
         likedCard.likedByMe = true;
         card.toggleCardLike(likedCard.likedByMe)
       })
+    },
+    removeLikeCallback: () => {
+      api.deleteCardLike(item._id)
+      .then((likedCard) => {
+        card.updateLikes(likedCard.likes.length)
+        likedCard.likedByMe = false;
+        card.toggleCardLike(likedCard.likedByMe)
+      })
     }
   })
   const cardElement = card.generateCard(userInfo.getUserInfo().id);

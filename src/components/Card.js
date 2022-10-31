@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({placeName, photo, likes, cardId, ownerId, cardTemplateSelector, callbackImage, confirmCallback, likeCallback }) {
+  constructor({placeName, photo, likes, cardId, ownerId, cardTemplateSelector, callbackImage, confirmCallback, likeCallback, removeLikeCallback }) {
     this._placeName = placeName;
     this._photoSource = photo;
     this._likes = likes;
@@ -11,6 +11,7 @@ export default class Card {
     this._confirmCallback = confirmCallback;
     this._likeBtnActive = "elements-grid__like-button_active";
     this._likeCallback = likeCallback;
+    this._removeLikeCallback = removeLikeCallback;
   }
 
   _getTemplate() {
@@ -24,34 +25,33 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._loadLikeButtonState();
+    //this._loadLikeButtonState();
 
     this._likeBtn = this._element.querySelector(".elements-grid__like-button")
     this._deleteBtn = this._element.querySelector(".elements-grid__delete-button")
     this._photo = this._element.querySelector(".elements-grid__photo")
 
-    this._likeBtn.addEventListener("click", () => {this._likeCallback()})
+    this._likeBtn.addEventListener("click", () => {
+      this._likeCallback()
+      if (this._likeBtn.classList.contains(this._likeBtnActive)) {
+          this._removeLikeCallback()
+      }
+    })
+    
     this._deleteBtn.addEventListener("click", () => {this._confirmCallback()})
     this._photo.addEventListener('click', (evt) => {this._callbackImage(evt);})
-  }
-
-  _loadLikeButtonState() {
-   // console.log(this._ownerId)
   }
 
   toggleCardLike(likedByMe) {
     if (likedByMe) {
       this._likeBtn.classList.add(this._likeBtnActive);
-      console.log("I liked this:", likedByMe)
     } else {
       this._likeBtn.classList.remove(this._likeBtnActive);
-      console.log("I liked this:", likedByMe)
     }
   }
 
   updateLikes(newLikesLength) {
     this._cardLikes.textContent = newLikesLength
-    console.log(newLikesLength)
   }
 
   generateCard(loggedUserId) {

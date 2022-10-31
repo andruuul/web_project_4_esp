@@ -78,16 +78,14 @@ export default class Api {
         "Content-Type": "application/json"
       }})
   }
-  
-  /*
+
   deleteCardLike(cardId) {
     return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "PUT",
+      method: "DELETE",
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json"
       }})
   }
-  */
   }
 
