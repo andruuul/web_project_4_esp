@@ -19,27 +19,20 @@ export default class Api {
 
   getInitialCards() {
     return this._request(`${this._baseUrl}/cards`, {
-      headers: {
-        authorization: this._authorization
-      }
+      headers: this._headers
     })
   }
 
   getProfileInfo() {
     return this._request(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._authorization
-      }
+      headers: this._headers
     })
   }
 
   editProfile(name, job) {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": "application/json"
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: job
@@ -50,10 +43,7 @@ export default class Api {
   addNewCard(cardData){
     return this._request(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": "application/json"
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: cardData.name, 
         link: cardData.link
@@ -64,28 +54,33 @@ export default class Api {
   deleteCard(cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": "application/json"
-      }})
+      headers: this._headers
+    })
   }
   
   addCardLike(cardId) {
     return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "PUT",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": "application/json"
-      }})
+      headers: this._headers
+    })
   }
 
   deleteCardLike(cardId) {
     return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": "application/json"
-      }})
+      headers: this._headers
+    })
   }
+
+  changeAvatar(link) {
+    return this._request(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link
+      })
+    })
   }
+
+}
 

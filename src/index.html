@@ -17,13 +17,13 @@
     <main class="content">
       <section class="profile-grid">
         <div class="profile-grid__avatar-box">
-          <img class="profile-grid__avatar-edit" src="<%=require('./images/profile-edit-button.svg')%>">
-          <img class="profile-grid__avatar" src="<%=require('./images/profile-photo.jpg')%>" alt="Profile photo">
+          <img class="profile-grid__avatar-edit" src="<%=require('./images/profile-edit-button.svg')%>" id="editAvatar">
+          <img class="profile-grid__avatar" src="" alt="Profile photo">
         </div>
         <div class="profile-grid__information">
-          <p class="profile-grid__username" id="defaultUsername">Jacques Cousteau</p>
+          <p class="profile-grid__username" id="defaultUsername"></p>
           <button id="editButton" class="profile-grid__edit-button"></button>
-          <p class="profile-grid__subtitle" id="defaultSubtitle">Explorador</p>
+          <p class="profile-grid__subtitle" id="defaultSubtitle"></p>
         </div>
         <button class="profile-grid__add-button"></button>
       </section>
@@ -34,11 +34,11 @@
           <p class="popup__title">Edit profile</p>
         </div>
         <form class="popup__form" name="profile-form">
-          <input class="popup__input" type="text" id="inputUsername" placeholder="Nombre" required minlength="2" maxlength="40" name="name">
+          <input class="popup__input" type="text" id="inputUsername" placeholder="Name" required minlength="2" maxlength="40" name="name">
           <span class="popup__input-error inputUsername-input-error"></span>
-          <input class="popup__input" type="text" id="inputSubtitle" placeholder="Acerca de mí" required minlength="2" maxlength="200" name="job">  
+          <input class="popup__input" type="text" id="inputSubtitle" placeholder="About me" required minlength="2" maxlength="200" name="job">  
           <span class="popup__input-error popup__input-error-lower inputSubtitle-input-error"></span>
-          <button class="popup__save-button popup__save-button_inactive" id="saveButton" type="submit">Guardar</button>
+          <button class="popup__save-button popup__save-button_inactive" id="saveButton" type="submit">Save</button>
         </form>
       </div>
       <div class="overlay"></div>
@@ -49,20 +49,32 @@
           <p class="popup__title">New Place</p>
         </div>
         <form class="popup__form" name="place-form">
-          <input class="popup__input" type="text" id="inputNewPlaceTitle" placeholder="Título" required minlength="2" maxlength="30" name="name">
+          <input class="popup__input" type="text" id="inputNewPlaceTitle" placeholder="Title" required minlength="2" maxlength="30" name="name">
           <span class="popup__input-error inputNewPlaceTitle-input-error"></span>
-          <input class="popup__input" type="url" id="inputNewPlaceURL" placeholder="URL de la imagen" required name="link">
+          <input class="popup__input" type="url" id="inputNewPlaceURL" placeholder="Image's URL" required name="link">
           <span class="popup__input-error popup__input-error-lower inputNewPlaceURL-input-error"></span>
-          <button class="popup__save-button popup__save-button_inactive" id="newPlaceSaveButton" type="submit">Crear</button>
+          <button class="popup__save-button popup__save-button_inactive" id="newPlaceSaveButton" type="submit">Save</button>
         </form>
       </div>
 
       <div id="confirmationPopup" class="popup confirmation-popup popup_hidden">
         <div class="popup__title-and-button">
           <button id="confirmationPopupCloseButton" class="popup__close-button"></button>
-          <p class="popup__title popup__title-confirmation">¿Estás seguro/a?</p>
+          <p class="popup__title popup__title-confirmation">Are you sure?</p>
         </div>
-        <button class="popup__save-button" id="confirmButton" type="submit">Sí</button>
+        <button class="popup__save-button" id="confirmButton" type="submit">Yes</button>
+      </div>
+
+      <div id="popupAvatar" class="popup avatar-popup popup_hidden">
+        <div class="popup__title-and-button">
+          <button id="newPlaceCloseButton" class="popup__close-button"></button>
+          <p class="popup__title">Change profile picture</p>
+        </div>
+        <form class="popup__form" name="avatar-form">
+          <input class="popup__input" type="url" id="inputAvatar" placeholder="Image's URL" required name="link">
+          <span class="popup__input-error inputAvatar-input-error"></span>
+          <button class="popup__save-button popup__save-button_inactive" id="newPlaceSaveButton" type="submit">Save</button>
+        </form>
       </div>
 
       <section class="elements-grid" id="elementsGrid"> 

@@ -13,7 +13,7 @@ import {
   editBtn, 
   defaultSubtitle, 
   defaultUsername, 
-  //profilePicture
+  profilePicture
 } from '../utils/constants.js'; 
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -29,27 +29,17 @@ const api = new Api({
   }
 });
 
-/* Esto lo haré hasta el final
-Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
-// destructure la respuesta
-  .then(([userData, cards]) => {
-      // establecer todos los datos
-  })
-  .catch(err => {
-    console.log(err)
-  });
-  */
-
   const userInfo = new UserInfo(defaultUsername, defaultSubtitle);
 
   let loggedUserId = "";
   
   api
   .getProfileInfo()
-    .then(({ name, about, /*avatar,*/ _id }) => {
+    .then(({ name, about, avatar, _id }) => {
       loggedUserId = _id;
-      userInfo.setUserInfo(name, about, loggedUserId)
-      //profilePicture.src = userInfo.avatar
+      userInfo.setUserInfo(name, about, avatar, loggedUserId)
+      profilePicture.src = avatar
+      console.log(userInfo.getUserInfo())
     })
     .then(() => {
       return api.getInitialCards()
@@ -70,27 +60,46 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
       );
       cardsList.renderItems();
     })
-    .catch((err) => { console.log("Error. La solicitud ha fallado: ", err); })
     .finally(() => { }) //cambiar el texto del botón
 
 
-    
+document.querySelector("#editAvatar").addEventListener(
+  "click", ()=>{
+    avatarPopup.open()
+  }
+)
+
+const avatarPopup = new PopupWithForm ({popupSelector:"#popupAvatar", handleSubmit: (photo) => {
+  avatarPopup.renderLoading({isLoading: true})
+  console.log("hola")
+  api.changeAvatar(photo.link)
+    .then((profile) => {
+      profilePicture.src = profile.avatar
+      avatarPopup.close()
+    }) 
+    .finally(() => {avatarPopup.renderLoading()})
+}})
+avatarPopup.setEventListeners()
+console.log(avatarPopup)
+
 
 const profilePopup = new PopupWithForm ({popupSelector:"#popupContainer", handleSubmit: ({name, job}) => {
+  profilePopup.renderLoading({isLoading: true})
   userInfo.setUserInfo(name, job);
   api.editProfile(name, job)
-    .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
-    .finally(() => {}) //cambiar el texto del botón
+    .then(() => {profilePopup.close()})
+    .finally(() => {profilePopup.renderLoading()})
 }})
 
 const newPlacePopup = new PopupWithForm ({popupSelector:"#popupContainerNewPlace", handleSubmit: (cardData) => {
+  newPlacePopup.renderLoading({isLoading: true})
   api.addNewCard(cardData)
     .then((data) => {
       const customCardReady = createCard(data)
-      document.querySelector(".elements-grid").prepend(customCardReady)
+      document.querySelector(".elements-grid").append(customCardReady)
+      newPlacePopup.close()
     })
-    .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
-    .finally(() => {}) //cambiar el texto del botón
+    .finally(() => {newPlacePopup.renderLoading()})
 }});
 
 let cardToDelete = null;
@@ -101,7 +110,6 @@ const confirmationPopup = new PopupWithConfirmation("#confirmationPopup", (id) =
     confirmationPopup.close()
     cardToDelete.removeCard()
   })
-  .catch ((err) => {console.log("Error. La solicitud ha fallado: ", err);})
 })
 confirmationPopup.setEventListeners()
 
@@ -176,3 +184,12 @@ newPlacePopup.setEventListeners()
 
 const imagePopup = new PopupWithImage ("#popupImageContainer")
 imagePopup.setEventListeners()
+
+/* ¿Cómo implemento en Promise.all?                                             ///////// :( //////////////
+Promise.all([api.getInitialCards(), api.getProfileInfo(), api.editProfile()])
+// destructure la respuesta
+  .then((values) => {
+    console.log(values)
+  })
+  .catch((err) => { console.log("Error. La solicitud ha fallado: ", err); })
+  */
