@@ -18,7 +18,7 @@
       <section class="profile-grid">
         <div class="profile-grid__avatar-box">
           <img class="profile-grid__avatar-edit" src="<%=require('./images/profile-edit-button.svg')%>" id="editAvatar">
-          <img class="profile-grid__avatar" src="" alt="Profile photo">
+          <img class="profile-grid__avatar" src="<%=require('./images/profile-photo.jpg')%>" alt="Profile photo">
         </div>
         <div class="profile-grid__information">
           <p class="profile-grid__username" id="defaultUsername"></p>
@@ -73,7 +73,7 @@
         <form class="popup__form" name="avatar-form">
           <input class="popup__input" type="url" id="inputAvatar" placeholder="Image's URL" required name="link">
           <span class="popup__input-error inputAvatar-input-error"></span>
-          <button class="popup__save-button popup__save-button_inactive" id="newPlaceSaveButton" type="submit">Save</button>
+          <button class="popup__save-button popup__save-button_inactive" id="avatarSaveButton" type="submit">Save</button>
         </form>
       </div>
 
