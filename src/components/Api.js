@@ -70,7 +70,6 @@ export default class Api {
       }})
   }
   
-  /*
   addCardLike(cardId) {
     return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "PUT",
@@ -79,7 +78,8 @@ export default class Api {
         "Content-Type": "application/json"
       }})
   }
-
+  
+  /*
   deleteCardLike(cardId) {
     return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "PUT",

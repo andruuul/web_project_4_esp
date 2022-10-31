@@ -60,6 +60,10 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
         renderer: (item) => {
           const cardReady = createCard(item);
           cardsList.addItem(cardReady);
+          if (item.likes.some(e => e._id === userInfo.getUserInfo().id
+          )) {
+            cardReady.querySelector(".elements-grid__like-button").classList.add("elements-grid__like-button_active")
+          }
         },
       },
         elementsGridSection
@@ -69,6 +73,8 @@ Promise.all([getProfileInfo(), getInitialCards(), editProfile(), addNewCard()])
     .catch((err) => { console.log("Error. La solicitud ha fallado: ", err); })
     .finally(() => { }) //cambiar el texto del botón
 
+
+    
 
 const profilePopup = new PopupWithForm ({popupSelector:"#popupContainer", handleSubmit: ({name, job}) => {
   userInfo.setUserInfo(name, job);
@@ -114,6 +120,14 @@ function createCard(item) {
       confirmationPopup.open()
       cardToDelete = card
       confirmationPopup.updateId(item._id)
+    },
+    likeCallback: () => {
+      api.addCardLike(item._id)
+      .then((likedCard) => {
+        card.updateLikes(likedCard.likes.length)
+        likedCard.likedByMe = true;
+        card.toggleCardLike(likedCard.likedByMe)
+      })
     }
   })
   const cardElement = card.generateCard(userInfo.getUserInfo().id);
@@ -132,7 +146,6 @@ const enableValidation = (settings) => {
   });
 };
 enableValidation(settings);
-
 
 
   
