@@ -16,6 +16,6 @@ export default class PopupWithImage extends Popup {
     const cardText = picture.closest('div').querySelector(this._sourceTextSelector)
     this._popupImage.src = picture.src;
     this._popupImage.alt = cardText.textContent
-    this._popup.querySelector(this._popupTextSelector).textContent = cardText.textContent;
+    this._imageCaption.textContent = cardText.textContent;
   }
 }

@@ -7,7 +7,6 @@ export default class Card {
     this._cardTemplateSelector = cardTemplateSelector;
     this._cardId = cardId;
     this._ownerId = ownerId;
-    this._confirmationPopup = document.querySelector("#confirmationPopup");
     this._confirmCallback = confirmCallback;
     this._likeBtnActive = "elements-grid__like-button_active";
     this._likeCallback = likeCallback;
@@ -32,12 +31,12 @@ export default class Card {
     this._photo = this._element.querySelector(".elements-grid__photo")
 
     this._likeBtn.addEventListener("click", () => {
-      this._likeCallback()
       if (this._likeBtn.classList.contains(this._likeBtnActive)) {
-          this._removeLikeCallback()
+        this._removeLikeCallback()
+      } else {
+        this._likeCallback()
       }
-    })
-    
+    });
     this._deleteBtn.addEventListener("click", () => {this._confirmCallback()})
     this._photo.addEventListener('click', (evt) => {this._callbackImage(evt);})
   }

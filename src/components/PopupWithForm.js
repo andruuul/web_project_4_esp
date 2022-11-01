@@ -7,9 +7,8 @@ export default class PopupWithForm extends Popup {
     this._inputs = this._popup.querySelectorAll(".popup__input");
     this._formSelector = ".popup__form"
     this._form = this._popup.querySelector(this._formSelector)
-    // arregle el texto inicial del botón solo una vez en el constructor
     this._submitBtn = this._popup.querySelector(".popup__save-button")
-    this._submitBtnText = "Save" 
+    this._submitBtnText = this._submitBtn.textContent
   }
 
   _getInputValues(){ 
@@ -28,6 +27,14 @@ export default class PopupWithForm extends Popup {
       this._submitBtn.textContent = this._submitBtnText;
     }
   }
+
+  /*
+  setInputValues(data) { 
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
+  */
 
   close() {
     super.close();
