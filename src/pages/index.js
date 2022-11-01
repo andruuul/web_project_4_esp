@@ -185,11 +185,11 @@ newPlacePopup.setEventListeners()
 const imagePopup = new PopupWithImage ("#popupImageContainer")
 imagePopup.setEventListeners()
 
-/* ¿Cómo implemento en Promise.all?                                             ///////// :( //////////////
-Promise.all([api.getInitialCards(), api.getProfileInfo(), api.editProfile()])
-// destructure la respuesta
-  .then((values) => {
-    console.log(values)
+
+//¿Esto es suficiente? No comprendí muy bien para qué usar el Promise.all
+Promise.all([api.getProfileInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+      console.log(userData)
+      console.log(cards)
   })
   .catch((err) => { console.log("Error. La solicitud ha fallado: ", err); })
-  */
