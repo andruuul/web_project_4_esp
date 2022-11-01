@@ -174,9 +174,7 @@ enableValidation(settings);
 
   
 editBtn.addEventListener("click", () => {
-  const { name, job } = userInfo.getUserInfo();
-  inputUserName.value = name;
-  inputSubtitle.value = job;
+  profilePopup.setInputValues(userInfo.getUserInfo()) //precarga el value del input al abrir el popup
   profilePopup.open()
   formValidators['profile-form'].resetValidation()
 })

@@ -24,8 +24,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-    //this._loadLikeButtonState();
-
     this._likeBtn = this._element.querySelector(".elements-grid__like-button")
     this._deleteBtn = this._element.querySelector(".elements-grid__delete-button")
     this._photo = this._element.querySelector(".elements-grid__photo")
